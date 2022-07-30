@@ -3,6 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "files": ["dist"],
+  "main": "./dist/vue-tagsinput-v.umd.js",
+  "module": "./dist/vue-tagsinput-v.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-tagsinput-v.es.js",
+      "require": "./dist/vue-tagsinput-v.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
