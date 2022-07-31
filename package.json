@@ -3,14 +3,19 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/vue-tagsinput-v.umd.js",
   "module": "./dist/vue-tagsinput-v.es.js",
   "exports": {
     ".": {
       "import": "./dist/vue-tagsinput-v.es.js",
       "require": "./dist/vue-tagsinput-v.umd.js"
-    }
+    },
+    "./dist/style.css": "./dist/style.css",
+    "./dist/css/bulma.min.css": "./dist/css/bulma.min.css",
+    "./dist/css/style.css": "./dist/css/style.css"
   },
   "scripts": {
     "dev": "vite",
