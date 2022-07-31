@@ -1,32 +1,29 @@
 <template>
-  <NTagsInput
-    v-model="tags"
-    :placeholder="'Type a tag'"
-    @input="onInput"
-  />
+  <div class="tags">
+    <VueTagsinputV
+      v-model="tags"
+      :placeholder="'Type a tag'"
+    />
+  </div>
+
+  <hr>
 
   Selected tags: {{ tags }}
-  
-  <input type="text" v-model="input"> {{ input }}
 </template>
 
 <script setup>
 import {
   ref
 } from 'vue'
-import NTagsInput from '../../src/App.vue'
+import VueTagsinputV from 'vue-tagsinput-v'
 
 const tags = ref([])
-const input = ref('')
-
-const trackTag = () => {
-  console.log(tags.value)
-}
-
-const onInput = (val, valObj, ipt) => {
-  console.log([val, valObj, ipt]);
-  if (valObj?.formatted) {
-    tags.value.push(valObj.formatted)
-  }
-}
 </script>
+
+<style>
+.tags {
+  background-color: #eee;
+  border-radius: 3px;
+  padding: 10px;
+}
+</style>

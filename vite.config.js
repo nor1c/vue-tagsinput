@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/main.js'),
-      name: 'vue-tagsinput-v',
+      name: 'VueTagsinputV',
       fileName: (format) => `vue-tagsinput-v.${format}.js`,
     },
     rollupOptions: {

@@ -1,7 +1,5 @@
-import TagsInput from './TagsInput.vue'
+import { createApp } from 'vue'
+import './style.css'
+import App from './App.vue'
 
-export default {
-  install: (app, options) => {
-    app.component('TagsInput', TagsInput)
-  }
-}
+createApp(App).mount('#app')

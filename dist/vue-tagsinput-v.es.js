@@ -1,11 +1,11 @@
-import { ref as v, onMounted as se, computed as ue, watch as b, nextTick as w, openBlock as r, createElementBlock as p, Fragment as x, createElementVNode as m, normalizeClass as S, renderList as B, renderSlot as ie, withDirectives as R, withModifiers as F, vShow as D, withKeys as k, unref as de, createCommentVNode as A, toDisplayString as j, createTextVNode as oe } from "vue";
-const re = /* @__PURE__ */ oe(" tags input "), pe = {
+import { ref as h, onMounted as ue, computed as ie, watch as w, nextTick as x, openBlock as o, createElementBlock as r, Fragment as T, createElementVNode as m, normalizeClass as S, renderList as A, renderSlot as de, withDirectives as R, withModifiers as F, vShow as D, withKeys as k, unref as oe, createCommentVNode as B, toDisplayString as j, createTextVNode as z, createVNode as re, createApp as pe } from "vue";
+const ce = /* @__PURE__ */ z(" tags input "), he = {
   class: "tags-input-root",
   style: { position: "relative" }
-}, ce = ["innerHTML"], he = ["onClick"], ve = ["id", "name", "placeholder", "value", "onKeydown", "onKeyup"], ye = {
+}, ve = ["innerHTML"], ye = ["onClick"], fe = ["id", "name", "placeholder", "value", "onKeydown", "onKeyup"], ge = {
   key: 0,
   style: { display: "none" }
-}, fe = ["name", "value"], ge = ["textContent"], me = ["innerHTML", "onMouseover", "onMousedown"], Se = ["textContent"], Fe = ["innerHTML", "onMouseover", "onMousedown"], Te = {
+}, me = ["name", "value"], Se = ["textContent"], Fe = ["innerHTML", "onMouseover", "onMousedown"], Te = ["textContent"], be = ["innerHTML", "onMouseover", "onMousedown"], we = {
   __name: "TagsInput",
   props: {
     elementId: String,
@@ -154,95 +154,95 @@ const re = /* @__PURE__ */ oe(" tags input "), pe = {
     "click",
     "blur"
   ],
-  setup(s, { emit: d }) {
-    const t = s;
-    v(0);
-    const u = v([]), c = v(""), I = v(""), z = v(""), i = v([]), o = v(0);
-    v(1);
-    const C = v(!1), M = v(!1), f = v(), O = v(null);
-    se(() => {
-      f.value = J(t.existingTags), K(), t.typeaheadAlwaysShow && y(), d("initialized"), addEventListener("click", (e) => {
-        e.target !== O.value && g();
+  setup(s, { emit: i }) {
+    const e = s;
+    h(0);
+    const u = h([]), p = h(""), I = h(""), Q = h(""), d = h([]), c = h(0);
+    h(1);
+    const C = h(!1), M = h(!1), f = h(), O = h(null);
+    ue(() => {
+      f.value = J(e.existingTags), K(), e.typeaheadAlwaysShow && y(), i("initialized"), addEventListener("click", (t) => {
+        t.target !== O.value && g();
       });
     });
-    const Q = ue(() => t.hideInputOnLimit && t.limit > 0 && u.value.length >= t.limit || t.disabled);
-    b(c.value, (e, a) => {
-      y(), e.length && e != a && (e.substring(a.length, e.length), t.addTagsOnSpace && e.endsWith(" ") && (c.value = e.trim(), t.tagFromInput(!0)), t.addTagsOnComma && (e = e.trim(), e.endsWith(",") && (c.value = e.substring(0, e.length - 1), t.tagFromInput(!0))), d("change", e));
-    }), b(t.existingTags, (e) => {
-      f.value.splice(0), f.value = J(e), y();
-    }), b(u.value, () => {
-      z.value = JSON.stringify(u.value), d("update:modelValue", u.value);
-    }), b(t.value, () => {
+    const W = ie(() => e.hideInputOnLimit && e.limit > 0 && u.value.length >= e.limit || e.disabled);
+    w(p.value, (t, a) => {
+      y(), t.length && t != a && (t.substring(a.length, t.length), e.addTagsOnSpace && t.endsWith(" ") && (p.value = t.trim(), e.tagFromInput(!0)), e.addTagsOnComma && (t = t.trim(), t.endsWith(",") && (p.value = t.substring(0, t.length - 1), e.tagFromInput(!0))), i("change", t));
+    }), w(e.existingTags, (t) => {
+      f.value.splice(0), f.value = J(t), y();
+    }), w(u.value, () => {
+      Q.value = JSON.stringify(u.value), i("update:modelValue", u.value);
+    }), w(e.value, () => {
       K();
-    }), b(t.typeaheadAlwaysShow, (e) => {
-      e ? y() : g();
+    }), w(e.typeaheadAlwaysShow, (t) => {
+      t ? y() : g();
     });
-    const T = (e) => e.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), W = (e = !1) => {
+    const b = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), q = (t = !1) => {
       if (!M.value)
-        if (i.value.length && o.value >= 0 && !e)
-          N(i.value[o.value]), c.value = "";
+        if (d.value.length && c.value >= 0 && !t)
+          H(d.value[c.value]), p.value = "";
         else {
-          let a = c.value.trim();
-          if (!t.onlyExistingTags && a.length && t.validate(a)) {
-            c.value = "";
+          let a = p.value.trim();
+          if (!e.onlyExistingTags && a.length && e.validate(a)) {
+            p.value = "";
             let l = {
-              [t.idField]: "",
-              [t.textField]: a
+              [e.idField]: "",
+              [e.textField]: a
             };
-            const n = T(
-              t.caseSensitiveTags ? l[t.textField] : l[t.textField].toLowerCase()
+            const n = b(
+              e.caseSensitiveTags ? l[e.textField] : l[e.textField].toLowerCase()
             );
-            for (let h of f.value) {
-              const ne = T(
-                t.caseSensitiveTags ? h[t.textField] : h[t.textField].toLowerCase()
+            for (let v of f.value) {
+              const se = b(
+                e.caseSensitiveTags ? v[e.textField] : v[e.textField].toLowerCase()
               );
-              if (n === ne) {
-                l = Object.assign({}, h);
+              if (n === se) {
+                l = Object.assign({}, v);
                 break;
               }
             }
             L(l);
           }
         }
-    }, H = (e) => {
-      N(e), O.value.blur();
-    }, N = (e) => {
-      g(), L(e), w(() => {
-        c.value = "", I.value = "";
+    }, N = (t) => {
+      H(t), O.value.blur();
+    }, H = (t) => {
+      g(), L(t), x(() => {
+        p.value = "", I.value = "";
       });
-    }, L = (e, a = !1) => {
-      if (!(t.disabled && !a)) {
-        if (!t.beforeAddingTag(e))
+    }, L = (t, a = !1) => {
+      if (!(e.disabled && !a)) {
+        if (!e.beforeAddingTag(t))
           return !1;
-        if (t.limit > 0 && u.value.length >= t.limit)
-          return d("limit-reached"), !1;
-        U(e) || (u.value.push(e), w(() => {
-          d("tag-added", e), d("tags-updated");
+        if (e.limit > 0 && u.value.length >= e.limit)
+          return i("limit-reached"), !1;
+        U(t) || (u.value.push(t), x(() => {
+          i("tag-added", t), i("tags-updated");
         }));
       }
-    }, q = () => {
-      !c.value.length && this.deleteOnBackspace && u.value.length && $(u.value.length - 1);
-    }, $ = (e) => {
-      if (t.disabled)
+    }, G = () => {
+      !p.value.length && this.deleteOnBackspace && u.value.length && $(u.value.length - 1);
+    }, $ = (t) => {
+      if (e.disabled)
         return;
-      let a = u.value[e];
+      let a = u.value[t];
       if (!beforeRemovingTag(a))
         return !1;
-      u.value.splice(e, 1), w(() => {
-        d("tag-removed", a), d("tags-updated"), t.typeaheadAlwaysShow && y();
+      u.value.splice(t, 1), x(() => {
+        i("tag-removed", a), i("tags-updated"), e.typeaheadAlwaysShow && y();
       });
     }, y = () => {
-      if (t.typeahead !== !0)
+      if (e.typeahead !== !0)
         return !1;
-      if (I.value != c.value || !i.value.length && t.typeaheadActivationThreshold == 0 || t.typeaheadAlwaysShow || this.typeaheadShowOnFocus) {
-        !typeaheadUrl.value.length && !t.typeaheadCallback && (i.value = []), o.value = 0;
-        let e = e.value.trim();
-        if (e.length && e.length >= t.typeaheadActivationThreshold || t.typeaheadActivationThreshold == 0 || t.typeaheadAlwaysShow) {
-          const a = T(
-            t.caseSensitiveTags ? e : e.toLowerCase()
+      if (I.value != p.value || !d.value.length && e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow || this.typeaheadShowOnFocus) {
+        !typeaheadUrl.value.length && !e.typeaheadCallback && (d.value = []), c.value = 0;
+        let t = t.value.trim();
+        if (t.length && t.length >= e.typeaheadActivationThreshold || e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow) {
+          const a = b(
+            e.caseSensitiveTags ? t : t.toLowerCase()
           );
-          if (t.typeaheadCallback)
-            t.typeaheadCallback(a).then((l) => {
+          if (e.typeaheadCallback)
+            e.typeaheadCallback(a).then((l) => {
               f.value = l;
             });
           else if (typeaheadUrl.value.length > 0) {
@@ -251,110 +251,110 @@ const re = /* @__PURE__ */ oe(" tags input "), pe = {
             l.onreadystatechange = function() {
               console.log([readyState, status]), this.readyState == 4 && this.status == 200 && (n.typeaheadTags = JSON.parse(l.responseText), n.doSearch(a));
             };
-            const h = typeaheadUrl.value.replace(":search", a);
-            l.open("GET", h, !0), l.send();
+            const v = typeaheadUrl.value.replace(":search", a);
+            l.open("GET", v, !0), l.send();
           } else
-            G(a);
+            X(a);
         }
-        I.value = e.value;
+        I.value = t.value;
       }
-    }, G = (e) => {
-      i.value = [];
+    }, X = (t) => {
+      d.value = [];
       for (let a of f.value) {
-        const l = t.caseSensitiveTags ? a[t.textField] : a[t.textField].toLowerCase(), n = i.value.map((h) => h[t.idField]);
-        l.search(e) > -1 && !U(a) && !n.includes(a[t.idField]) && i.value.push(a);
+        const l = e.caseSensitiveTags ? a[e.textField] : a[e.textField].toLowerCase(), n = d.value.map((v) => v[e.idField]);
+        l.search(t) > -1 && !U(a) && !n.includes(a[e.idField]) && d.value.push(a);
       }
-      t.sortSearchResults && i.value.sort((a, l) => a[t.textField] < l[t.textField] ? -1 : a[t.textField] > l[t.textField] ? 1 : 0), t.typeaheadMaxResults > 0 && (i.value = i.value.slice(
+      e.sortSearchResults && d.value.sort((a, l) => a[e.textField] < l[e.textField] ? -1 : a[e.textField] > l[e.textField] ? 1 : 0), e.typeaheadMaxResults > 0 && (d.value = d.value.slice(
         0,
-        t.typeaheadMaxResults
+        e.typeaheadMaxResults
       ));
-    }, X = () => {
-      c.value.length || w(() => {
+    }, P = () => {
+      p.value.length || x(() => {
         g();
       });
-    }, P = () => {
-      o.value + 1 <= i.value.length - 1 && o.value++;
+    }, V = () => {
+      c.value + 1 <= d.value.length - 1 && c.value++;
     }, Y = () => {
-      o.value > 0 && o.value--;
-    }, g = (e = !1) => {
-      i.value = [], o.value = 0, t.typeaheadAlwaysShow && w(() => {
+      c.value > 0 && c.value--;
+    }, g = (t = !1) => {
+      d.value = [], c.value = 0, e.typeaheadAlwaysShow && x(() => {
         y();
-      }), e && O.value.focus();
+      }), t && O.value.focus();
     }, E = () => {
       u.value.splice(0, u.value.length);
     }, K = () => {
-      if (t.value && t.value.length) {
-        if (!Array.isArray(t.value)) {
+      if (e.value && e.value.length) {
+        if (!Array.isArray(e.value)) {
           console.error("Voerro Tags Input: the v-model value must be an array!");
           return;
         }
-        let e = t.value;
-        if (e.value == e)
+        let t = e.value;
+        if (t.value == t)
           return;
         E();
-        for (let a of e)
+        for (let a of t)
           L(a, !0);
       } else {
         if (u.value.length == 0)
           return;
         E();
       }
-    }, U = (e) => {
-      if (t.allowDuplicates || !e)
+    }, U = (t) => {
+      if (e.allowDuplicates || !t)
         return !1;
-      const a = T(
-        t.caseSensitiveTags ? e[t.textField] : e[t.textField].toLowerCase()
+      const a = b(
+        e.caseSensitiveTags ? t[e.textField] : t[e.textField].toLowerCase()
       );
       for (let l of u.value) {
-        const n = t.caseSensitiveTags ? l[t.textField] : l[t.textField].toLowerCase();
-        if (l[t.idField] === e[t.idField] && T(n).length == a.length && n.search(a) > -1)
+        const n = e.caseSensitiveTags ? l[e.textField] : l[e.textField].toLowerCase();
+        if (l[e.idField] === t[e.idField] && b(n).length == a.length && n.search(a) > -1)
           return !0;
       }
       return !1;
-    }, Z = (e) => {
-      d("keyup", e);
-    }, V = (e) => {
-      d("keydown", e);
-    }, _ = (e) => {
-      d("focus", e), C.value = !0;
-    }, ee = (e) => {
-      d("click", e), C.value = !0, y();
-    }, te = (e) => {
-      d("blur", e), t.addTagsOnBlur && t.tagFromInput(!0), t.typeaheadAlwaysShow ? y() : X(), C.value = !1;
-    }, ae = (e) => {
-      if (!t.valueFields)
-        return JSON.stringify(e);
-      const a = t.valueFields.replace(/\s/, "").split(",");
-      return a.length === 1 ? e[a[0]] : JSON.stringify(
+    }, Z = (t) => {
+      i("keyup", t);
+    }, _ = (t) => {
+      i("keydown", t);
+    }, ee = (t) => {
+      i("focus", t), C.value = !0;
+    }, te = (t) => {
+      i("click", t), C.value = !0, y();
+    }, ae = (t) => {
+      i("blur", t), e.addTagsOnBlur && e.tagFromInput(!0), e.typeaheadAlwaysShow ? y() : P(), C.value = !1;
+    }, le = (t) => {
+      if (!e.valueFields)
+        return JSON.stringify(t);
+      const a = e.valueFields.replace(/\s/, "").split(",");
+      return a.length === 1 ? t[a[0]] : JSON.stringify(
         Object.assign(
           {},
-          ...a.map((l) => ({ [l]: e[l] }))
+          ...a.map((l) => ({ [l]: t[l] }))
         )
       );
-    }, le = (e) => t.displayField !== void 0 && t.displayField !== null && e[t.displayField] !== void 0 && e[t.displayField] !== null && e[t.displayField] !== "" ? e[t.displayField] : e[t.textField], J = (e) => e.map((a) => Object.assign({}, a));
-    return (e, a) => (r(), p(x, null, [
-      re,
-      m("div", pe, [
+    }, ne = (t) => e.displayField !== void 0 && e.displayField !== null && t[e.displayField] !== void 0 && t[e.displayField] !== null && t[e.displayField] !== "" ? t[e.displayField] : t[e.textField], J = (t) => t.map((a) => Object.assign({}, a));
+    return (t, a) => (o(), r(T, null, [
+      ce,
+      m("div", he, [
         m("div", {
           class: S({ [s.wrapperClass + " tags-input"]: !0, active: C.value, disabled: s.disabled })
         }, [
-          (r(!0), p(x, null, B(u.value, (l, n) => (r(), p("span", {
+          (o(!0), r(T, null, A(u.value, (l, n) => (o(), r("span", {
             key: n,
             class: S(["tags-input-badge tags-input-badge-pill tags-input-badge-selected-default", { disabled: s.disabled }])
           }, [
-            ie(e.$slots, "selected-tag", {
+            de(t.$slots, "selected-tag", {
               tag: l,
               index: n,
               removeTag: $
             }, () => [
               m("span", {
                 innerHTML: l[s.textField]
-              }, null, 8, ce),
+              }, null, 8, ve),
               R(m("a", {
                 href: "#",
                 class: "tags-input-remove",
-                onClick: F((h) => $(n), ["prevent"])
-              }, null, 8, he), [
+                onClick: F((v) => $(n), ["prevent"])
+              }, null, 8, ye), [
                 [D, !s.disabled]
               ])
             ])
@@ -365,90 +365,97 @@ const re = /* @__PURE__ */ oe(" tags input "), pe = {
             id: s.inputId,
             name: s.inputId,
             placeholder: s.placeholder,
-            value: c.value,
-            onInput: a[0] || (a[0] = (l) => c.value = l.target.value),
+            value: p.value,
+            onInput: a[0] || (a[0] = (l) => p.value = l.target.value),
             onCompositionstart: a[1] || (a[1] = (l) => M.value = !0),
             onCompositionend: a[2] || (a[2] = (l) => M.value = !1),
             onKeydown: [
-              a[3] || (a[3] = k(F((l) => W(!1), ["prevent"]), ["enter"])),
-              k(q, ["8"]),
-              k(P, ["down"]),
+              a[3] || (a[3] = k(F((l) => q(!1), ["prevent"]), ["enter"])),
+              k(G, ["8"]),
+              k(V, ["down"]),
               k(Y, ["up"]),
-              V
+              _
             ],
             onKeyup: [
               Z,
               k(g, ["esc"])
             ],
-            onFocus: _,
-            onClick: ee,
-            onBlur: te,
+            onFocus: ee,
+            onClick: te,
+            onBlur: ae,
             onValue: a[4] || (a[4] = (...l) => u.value && u.value(...l))
-          }, null, 40, ve), [
-            [D, !de(Q)]
+          }, null, 40, fe), [
+            [D, !oe(W)]
           ]),
-          s.elementId ? (r(), p("div", ye, [
-            (r(!0), p(x, null, B(u.value, (l, n) => (r(), p("input", {
+          s.elementId ? (o(), r("div", ge, [
+            (o(!0), r(T, null, A(u.value, (l, n) => (o(), r("input", {
               key: n,
               type: "hidden",
               name: `${s.elementId}[]`,
-              value: ae(l)
-            }, null, 8, fe))), 128))
-          ])) : A("", !0)
+              value: le(l)
+            }, null, 8, me))), 128))
+          ])) : B("", !0)
         ], 2),
         R(m("div", null, [
-          s.typeaheadStyle === "badges" ? (r(), p("p", {
+          s.typeaheadStyle === "badges" ? (o(), r("p", {
             key: 0,
             class: S(`typeahead-${s.typeaheadStyle}`)
           }, [
-            s.typeaheadHideDiscard ? A("", !0) : (r(), p("span", {
+            s.typeaheadHideDiscard ? B("", !0) : (o(), r("span", {
               key: 0,
               class: "tags-input-badge typeahead-hide-btn tags-input-typeahead-item-default",
               onClick: a[5] || (a[5] = F((l) => g(!0), ["prevent"])),
               textContent: j(s.discardSearchText)
-            }, null, 8, ge)),
-            (r(!0), p(x, null, B(i.value, (l, n) => (r(), p("span", {
+            }, null, 8, Se)),
+            (o(!0), r(T, null, A(d.value, (l, n) => (o(), r("span", {
               key: n,
               innerHTML: l[s.textField],
-              onMouseover: (h) => o.value = n,
-              onMousedown: F((h) => H(l), ["prevent"]),
+              onMouseover: (v) => c.value = n,
+              onMousedown: F((v) => N(l), ["prevent"]),
               class: S(["tags-input-badge", {
-                "tags-input-typeahead-item-default": n != o.value,
-                "tags-input-typeahead-item-highlighted-default": n == o.value
+                "tags-input-typeahead-item-default": n != c.value,
+                "tags-input-typeahead-item-highlighted-default": n == c.value
               }])
-            }, null, 42, me))), 128))
-          ], 2)) : s.typeaheadStyle === "dropdown" ? (r(), p("ul", {
+            }, null, 42, Fe))), 128))
+          ], 2)) : s.typeaheadStyle === "dropdown" ? (o(), r("ul", {
             key: 1,
             class: S(`typeahead-${s.typeaheadStyle}`)
           }, [
-            s.typeaheadHideDiscard ? A("", !0) : (r(), p("li", {
+            s.typeaheadHideDiscard ? B("", !0) : (o(), r("li", {
               key: 0,
               class: "tags-input-typeahead-item-default typeahead-hide-btn",
               onClick: a[6] || (a[6] = F((l) => g(!0), ["prevent"])),
               textContent: j(s.discardSearchText)
-            }, null, 8, Se)),
-            (r(!0), p(x, null, B(i.value, (l, n) => (r(), p("li", {
+            }, null, 8, Te)),
+            (o(!0), r(T, null, A(d.value, (l, n) => (o(), r("li", {
               key: n,
-              innerHTML: le(l),
-              onMouseover: (h) => o.value = n,
-              onMousedown: F((h) => H(l), ["prevent"]),
+              innerHTML: ne(l),
+              onMouseover: (v) => c.value = n,
+              onMousedown: F((v) => N(l), ["prevent"]),
               class: S({
-                "tags-input-typeahead-item-default": n != o.value,
-                "tags-input-typeahead-item-highlighted-default": n == o.value
+                "tags-input-typeahead-item-default": n != c.value,
+                "tags-input-typeahead-item-highlighted-default": n == c.value
               })
-            }, null, 42, Fe))), 128))
-          ], 2)) : A("", !0)
+            }, null, 42, be))), 128))
+          ], 2)) : B("", !0)
         ], 512), [
-          [D, i.value.length]
+          [D, d.value.length]
         ])
       ])
     ], 64));
   }
-}, we = {
-  install: (s, d) => {
-    s.component("TagsInput", Te);
+}, xe = /* @__PURE__ */ z(" tags input here: "), ke = {
+  __name: "App",
+  setup(s) {
+    const i = h([]);
+    return (e, u) => (o(), r(T, null, [
+      xe,
+      re(we, {
+        modelValue: i.value,
+        "onUpdate:modelValue": u[0] || (u[0] = (p) => i.value = p),
+        placeholder: "Type a tag"
+      }, null, 8, ["modelValue"])
+    ], 64));
   }
 };
-export {
-  we as default
-};
+pe(ke).mount("#app");
