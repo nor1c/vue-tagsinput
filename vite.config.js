@@ -6,7 +6,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/main.js'),
+      entry: path.resolve(__dirname, 'src/plugin.js'),
       name: 'VueTagsinputV',
       fileName: (format) => `vue-tagsinput-v.${format}.js`,
     },

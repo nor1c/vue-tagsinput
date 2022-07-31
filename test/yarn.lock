@@ -341,6 +341,12 @@ vite@^3.0.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
+"vue-tagsinput-v@https://github.com/nor1c/vue-tagsinput":
+  version "0.0.0"
+  resolved "https://github.com/nor1c/vue-tagsinput#c67f90647782dc684f47c8b307348ecc91a160b2"
+  dependencies:
+    vue "^3.2.37"
+
 vue@^3.2.37:
   version "3.2.37"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.37.tgz#da220ccb618d78579d25b06c7c21498ca4e5452e"

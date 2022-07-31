@@ -130,7 +130,9 @@ const emit = defineEmits([
   'keydown', 
   'focus', 
   'click', 
-  'blur'
+  'blur',
+  'update:modelValue',
+  'onUpdate:modelValue'
 ])
 
 /**
@@ -145,11 +147,9 @@ const props = defineProps({
       return [];
     }
   },
-  value: {
+  modelValue: {
     type: Array,
-    default: () => {
-      return [];
-    }
+    default: () => []
   },
   idField: {
     type: String,
@@ -270,6 +270,10 @@ const props = defineProps({
   beforeRemovingTag: {
     type: Function,
     default: () => true
+  },
+  modelValue: {
+    type: Array,
+    default: []
   }
 })
 
@@ -366,7 +370,7 @@ watch (tags.value, () => {
   emit('update:modelValue', tags.value)
 })
 
-watch (props.value, () => {
+watch (props.modelValue, () => {
   tagsFromValue();
 })
 
@@ -720,14 +724,14 @@ const clearTags = () => {
  * @returns void
  */
 const tagsFromValue = () => {
-  if (props.value && props.value.length) {
-    if (!Array.isArray(props.value)) {
+  if (props.modelValue && props.modelValue.length) {
+    if (!Array.isArray(props.modelValue)) {
       console.error('Voerro Tags Input: the v-model value must be an array!');
 
       return;
     }
 
-    let tags = props.value;
+    let tags = props.modelValue;
 
     // Don't update if nothing has changed
     if (tags.value == tags) {
@@ -860,11 +864,11 @@ const onBlur = (e) => {
 
 const hiddenInputValue = (tag) => {
   // Return all fields
-  if (!props.valueFields) {
+  if (!props.modelValueFields) {
     return JSON.stringify(tag);
   }
 
-  const fields = props.valueFields.replace(/\s/, '').split(',');
+  const fields = props.modelValueFields.replace(/\s/, '').split(',');
 
   // A single field
   if (fields.length === 1) {

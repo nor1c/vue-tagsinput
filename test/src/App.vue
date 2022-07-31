@@ -7,7 +7,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import TagInput from '../../src/App.vue'
+import TagInput from 'vue-tagsinput-v'
 
 const tags = ref([])
 </script>
