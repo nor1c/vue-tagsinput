@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "vue": "^3.2.37",
-    "vue-tagsinput-v": "https://github.com/nor1c/vue-tagsinput"
+    "voerro-vue3-tagsinput": "https://github.com/nor1c/vue-tagsinput"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.0",

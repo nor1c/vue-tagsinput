@@ -6,9 +6,9 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/plugin.js'),
-      name: 'VueTagsinputV',
-      fileName: (format) => `vue-tagsinput-v.${format}.js`,
+      entry: path.resolve(__dirname, './lib/install.ts'),
+      name: 'TagsInput',
+      fileName: (format) => `voerro-vue3-tagsinput.${format}.js`,
     },
     rollupOptions: {
       external: ['vue'],

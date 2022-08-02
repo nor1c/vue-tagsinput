@@ -1,17 +1,17 @@
 {
-  "name": "vue-tagsinput-v",
+  "name": "voerro-vue3-tagsinput",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/vue-tagsinput-v.umd.js",
-  "module": "./dist/vue-tagsinput-v.es.js",
+  "main": "./dist/voerro-vue3-tagsinput.umd.js",
+  "module": "./dist/voerro-vue3-tagsinput.es.js",
   "exports": {
     ".": {
-      "import": "./dist/vue-tagsinput-v.es.js",
-      "require": "./dist/vue-tagsinput-v.umd.js"
+      "import": "./dist/voerro-vue3-tagsinput.es.js",
+      "require": "./dist/voerro-vue3-tagsinput.umd.js"
     },
     "./dist/style.css": "./dist/style.css",
     "./dist/css/bulma.min.css": "./dist/css/bulma.min.css",

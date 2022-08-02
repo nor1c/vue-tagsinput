@@ -341,7 +341,7 @@ vite@^3.0.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
-"vue-tagsinput-v@https://github.com/nor1c/vue-tagsinput":
+"voerro-vue3-tagsinput@https://github.com/nor1c/vue-tagsinput":
   version "0.0.0"
   resolved "https://github.com/nor1c/vue-tagsinput#c67f90647782dc684f47c8b307348ecc91a160b2"
   dependencies:

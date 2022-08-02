@@ -1,5 +1,4 @@
 <template>
-  tags input
   <div class="tags-input-root" style="position: relative;">
     <div :class="{ [ wrapperClass + ' tags-input' ]: true, 'active': isActive, 'disabled': disabled }">
       <span v-for="(tag, index) in tags"
