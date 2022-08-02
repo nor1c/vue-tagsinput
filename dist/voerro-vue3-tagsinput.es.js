@@ -5,7 +5,7 @@ const oe = {
 }, re = ["innerHTML"], pe = ["onClick"], ce = ["id", "name", "placeholder", "value", "onKeydown", "onKeyup"], he = {
   key: 0,
   style: { display: "none" }
-}, ye = ["name", "value"], ve = ["textContent"], fe = ["innerHTML", "onMouseover", "onMousedown"], ge = ["textContent"], me = ["innerHTML", "onMouseover", "onMousedown"], Se = {
+}, ye = ["name", "value"], fe = ["textContent"], ve = ["innerHTML", "onMouseover", "onMousedown"], ge = ["textContent"], me = ["innerHTML", "onMouseover", "onMousedown"], Se = {
   __name: "TagsInput",
   props: {
     elementId: String,
@@ -165,23 +165,23 @@ const oe = {
     y(0);
     const u = y([]), c = y(""), I = y(""), j = y(""), i = y([]), d = y(0);
     y(1);
-    const x = y(!1), M = y(!1), f = y(), O = y(null);
+    const x = y(!1), M = y(!1), v = y(), O = y(null);
     se(() => {
-      f.value = V(e.existingTags), K(), e.typeaheadAlwaysShow && v(), p("initialized"), addEventListener("click", (t) => {
+      v.value = V(e.existingTags), K(), e.typeaheadAlwaysShow && f(), p("initialized"), addEventListener("click", (t) => {
         t.target !== O.value && g();
       });
     });
     const z = ue(() => e.hideInputOnLimit && e.limit > 0 && u.value.length >= e.limit || e.disabled);
     T(c.value, (t, a) => {
-      v(), t.length && t != a && (t.substring(a.length, t.length), e.addTagsOnSpace && t.endsWith(" ") && (c.value = t.trim(), e.tagFromInput(!0)), e.addTagsOnComma && (t = t.trim(), t.endsWith(",") && (c.value = t.substring(0, t.length - 1), e.tagFromInput(!0))), p("change", t));
+      f(), t.length && t != a && (t.substring(a.length, t.length), e.addTagsOnSpace && t.endsWith(" ") && (c.value = t.trim(), e.tagFromInput(!0)), e.addTagsOnComma && (t = t.trim(), t.endsWith(",") && (c.value = t.substring(0, t.length - 1), e.tagFromInput(!0))), p("change", t));
     }), T(e.existingTags, (t) => {
-      f.value.splice(0), f.value = V(t), v();
+      v.value.splice(0), v.value = V(t), f();
     }), T(u.value, () => {
       j.value = JSON.stringify(u.value), p("update:modelValue", u.value);
     }), T(e.modelValue, () => {
       K();
     }), T(e.typeaheadAlwaysShow, (t) => {
-      t ? v() : g();
+      t ? f() : g();
     });
     const F = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), Q = (t = !1) => {
       if (!M.value)
@@ -198,7 +198,7 @@ const oe = {
             const n = F(
               e.caseSensitiveTags ? l[e.textField] : l[e.textField].toLowerCase()
             );
-            for (let h of f.value) {
+            for (let h of v.value) {
               const ne = F(
                 e.caseSensitiveTags ? h[e.textField] : h[e.textField].toLowerCase()
               );
@@ -235,13 +235,13 @@ const oe = {
       if (!beforeRemovingTag(a))
         return !1;
       u.value.splice(t, 1), b(() => {
-        p("tag-removed", a), p("tags-updated"), e.typeaheadAlwaysShow && v();
+        p("tag-removed", a), p("tags-updated"), e.typeaheadAlwaysShow && f();
       });
-    }, v = () => {
+    }, f = () => {
       if (e.typeahead !== !0)
         return !1;
       if (I.value != c.value || !i.value.length && e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow || e.typeaheadShowOnFocus) {
-        !typeaheadUrl.value.length && !e.typeaheadCallback && (i.value = []), d.value = 0;
+        !e.typeaheadUrl.length && !e.typeaheadCallback && (i.value = []), d.value = 0;
         let t = t.value.trim();
         if (t.length && t.length >= e.typeaheadActivationThreshold || e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow) {
           const a = F(
@@ -249,15 +249,15 @@ const oe = {
           );
           if (e.typeaheadCallback)
             e.typeaheadCallback(a).then((l) => {
-              f.value = l;
+              v.value = l;
             });
-          else if (typeaheadUrl.value.length > 0) {
-            f.value.splice(0);
+          else if (e.typeaheadUrl.length > 0) {
+            v.value.splice(0);
             const l = new XMLHttpRequest(), n = this;
             l.onreadystatechange = function() {
               console.log([readyState, status]), this.readyState == 4 && this.status == 200 && (n.typeaheadTags = JSON.parse(l.responseText), n.doSearch(a));
             };
-            const h = typeaheadUrl.value.replace(":search", a);
+            const h = e.typeaheadUrl.replace(":search", a);
             l.open("GET", h, !0), l.send();
           } else
             q(a);
@@ -266,7 +266,7 @@ const oe = {
       }
     }, q = (t) => {
       i.value = [];
-      for (let a of f.value) {
+      for (let a of v.value) {
         const l = e.caseSensitiveTags ? a[e.textField] : a[e.textField].toLowerCase(), n = i.value.map((h) => h[e.idField]);
         l.search(t) > -1 && !U(a) && !n.includes(a[e.idField]) && i.value.push(a);
       }
@@ -284,7 +284,7 @@ const oe = {
       d.value > 0 && d.value--;
     }, g = (t = !1) => {
       i.value = [], d.value = 0, e.typeaheadAlwaysShow && b(() => {
-        v();
+        f();
       }), t && O.value.focus();
     }, E = () => {
       u.value.splice(0, u.value.length);
@@ -324,9 +324,9 @@ const oe = {
     }, _ = (t) => {
       p("focus", t), x.value = !0;
     }, ee = (t) => {
-      p("click", t), x.value = !0, v();
+      p("click", t), x.value = !0, f();
     }, te = (t) => {
-      p("blur", t), e.addTagsOnBlur && e.tagFromInput(!0), e.typeaheadAlwaysShow ? v() : G(), x.value = !1;
+      p("blur", t), e.addTagsOnBlur && e.tagFromInput(!0), e.typeaheadAlwaysShow ? f() : G(), x.value = !1;
     }, ae = (t) => {
       if (!e.modelValueFields)
         return JSON.stringify(t);
@@ -410,7 +410,7 @@ const oe = {
             class: "tags-input-badge typeahead-hide-btn tags-input-typeahead-item-default",
             onClick: a[5] || (a[5] = S((l) => g(!0), ["prevent"])),
             textContent: J(s.discardSearchText)
-          }, null, 8, ve)),
+          }, null, 8, fe)),
           (o(!0), r(C, null, A(i.value, (l, n) => (o(), r("span", {
             key: n,
             innerHTML: l[s.textField],
@@ -420,7 +420,7 @@ const oe = {
               "tags-input-typeahead-item-default": n != d.value,
               "tags-input-typeahead-item-highlighted-default": n == d.value
             }])
-          }, null, 42, fe))), 128))
+          }, null, 42, ve))), 128))
         ], 2)) : s.typeaheadStyle === "dropdown" ? (o(), r("ul", {
           key: 1,
           class: m(`typeahead-${s.typeaheadStyle}`)

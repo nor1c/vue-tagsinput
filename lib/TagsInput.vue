@@ -568,7 +568,7 @@ const searchTag = () => {
   }
 
   if (oldInput.value != input.value || (!searchResults.value.length && props.typeaheadActivationThreshold == 0) || props.typeaheadAlwaysShow || props.typeaheadShowOnFocus) {
-    if (!typeaheadUrl.value.length && !props.typeaheadCallback) {
+    if (!props.typeaheadUrl.length && !props.typeaheadCallback) {
       searchResults.value = [];
     }
 
@@ -587,7 +587,7 @@ const searchTag = () => {
           .then((results) => {
             typeaheadTags.value = results;
           });
-      } else if (typeaheadUrl.value.length > 0) {
+      } else if (props.typeaheadUrl.length > 0) {
         typeaheadTags.value.splice(0);
         const xhttp = new XMLHttpRequest();
         const that = this;
@@ -601,7 +601,7 @@ const searchTag = () => {
           }
         }
 
-        const endpoint = typeaheadUrl.value.replace(':search', searchQuery);
+        const endpoint = props.typeaheadUrl.replace(':search', searchQuery);
         xhttp.open('GET', endpoint, true);
         xhttp.send();
       } else {
