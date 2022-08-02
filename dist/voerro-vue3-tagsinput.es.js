@@ -161,46 +161,46 @@ const oe = {
     "onUpdate:modelValue"
   ],
   setup(s, { emit: p }) {
-    const t = s;
+    const e = s;
     y(0);
     const u = y([]), c = y(""), I = y(""), j = y(""), i = y([]), d = y(0);
     y(1);
     const x = y(!1), M = y(!1), f = y(), O = y(null);
     se(() => {
-      f.value = V(t.existingTags), K(), t.typeaheadAlwaysShow && v(), p("initialized"), addEventListener("click", (e) => {
-        e.target !== O.value && g();
+      f.value = V(e.existingTags), K(), e.typeaheadAlwaysShow && v(), p("initialized"), addEventListener("click", (t) => {
+        t.target !== O.value && g();
       });
     });
-    const z = ue(() => t.hideInputOnLimit && t.limit > 0 && u.value.length >= t.limit || t.disabled);
-    T(c.value, (e, a) => {
-      v(), e.length && e != a && (e.substring(a.length, e.length), t.addTagsOnSpace && e.endsWith(" ") && (c.value = e.trim(), t.tagFromInput(!0)), t.addTagsOnComma && (e = e.trim(), e.endsWith(",") && (c.value = e.substring(0, e.length - 1), t.tagFromInput(!0))), p("change", e));
-    }), T(t.existingTags, (e) => {
-      f.value.splice(0), f.value = V(e), v();
+    const z = ue(() => e.hideInputOnLimit && e.limit > 0 && u.value.length >= e.limit || e.disabled);
+    T(c.value, (t, a) => {
+      v(), t.length && t != a && (t.substring(a.length, t.length), e.addTagsOnSpace && t.endsWith(" ") && (c.value = t.trim(), e.tagFromInput(!0)), e.addTagsOnComma && (t = t.trim(), t.endsWith(",") && (c.value = t.substring(0, t.length - 1), e.tagFromInput(!0))), p("change", t));
+    }), T(e.existingTags, (t) => {
+      f.value.splice(0), f.value = V(t), v();
     }), T(u.value, () => {
       j.value = JSON.stringify(u.value), p("update:modelValue", u.value);
-    }), T(t.modelValue, () => {
+    }), T(e.modelValue, () => {
       K();
-    }), T(t.typeaheadAlwaysShow, (e) => {
-      e ? v() : g();
+    }), T(e.typeaheadAlwaysShow, (t) => {
+      t ? v() : g();
     });
-    const F = (e) => e.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), Q = (e = !1) => {
+    const F = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), Q = (t = !1) => {
       if (!M.value)
-        if (i.value.length && d.value >= 0 && !e)
+        if (i.value.length && d.value >= 0 && !t)
           N(i.value[d.value]), c.value = "";
         else {
           let a = c.value.trim();
-          if (!t.onlyExistingTags && a.length && t.validate(a)) {
+          if (!e.onlyExistingTags && a.length && e.validate(a)) {
             c.value = "";
             let l = {
-              [t.idField]: "",
-              [t.textField]: a
+              [e.idField]: "",
+              [e.textField]: a
             };
             const n = F(
-              t.caseSensitiveTags ? l[t.textField] : l[t.textField].toLowerCase()
+              e.caseSensitiveTags ? l[e.textField] : l[e.textField].toLowerCase()
             );
             for (let h of f.value) {
               const ne = F(
-                t.caseSensitiveTags ? h[t.textField] : h[t.textField].toLowerCase()
+                e.caseSensitiveTags ? h[e.textField] : h[e.textField].toLowerCase()
               );
               if (n === ne) {
                 l = Object.assign({}, h);
@@ -210,45 +210,45 @@ const oe = {
             L(l);
           }
         }
-    }, H = (e) => {
-      N(e), O.value.blur();
-    }, N = (e) => {
-      g(), L(e), b(() => {
+    }, H = (t) => {
+      N(t), O.value.blur();
+    }, N = (t) => {
+      g(), L(t), b(() => {
         c.value = "", I.value = "";
       });
-    }, L = (e, a = !1) => {
-      if (!(t.disabled && !a)) {
-        if (!t.beforeAddingTag(e))
+    }, L = (t, a = !1) => {
+      if (!(e.disabled && !a)) {
+        if (!e.beforeAddingTag(t))
           return !1;
-        if (t.limit > 0 && u.value.length >= t.limit)
+        if (e.limit > 0 && u.value.length >= e.limit)
           return p("limit-reached"), !1;
-        U(e) || (u.value.push(e), b(() => {
-          p("tag-added", e), p("tags-updated");
+        U(t) || (u.value.push(t), b(() => {
+          p("tag-added", t), p("tags-updated");
         }));
       }
     }, W = () => {
       !c.value.length && this.deleteOnBackspace && u.value.length && $(u.value.length - 1);
-    }, $ = (e) => {
-      if (t.disabled)
+    }, $ = (t) => {
+      if (e.disabled)
         return;
-      let a = u.value[e];
+      let a = u.value[t];
       if (!beforeRemovingTag(a))
         return !1;
-      u.value.splice(e, 1), b(() => {
-        p("tag-removed", a), p("tags-updated"), t.typeaheadAlwaysShow && v();
+      u.value.splice(t, 1), b(() => {
+        p("tag-removed", a), p("tags-updated"), e.typeaheadAlwaysShow && v();
       });
     }, v = () => {
-      if (t.typeahead !== !0)
+      if (e.typeahead !== !0)
         return !1;
-      if (I.value != c.value || !i.value.length && t.typeaheadActivationThreshold == 0 || t.typeaheadAlwaysShow || this.typeaheadShowOnFocus) {
-        !typeaheadUrl.value.length && !t.typeaheadCallback && (i.value = []), d.value = 0;
-        let e = e.value.trim();
-        if (e.length && e.length >= t.typeaheadActivationThreshold || t.typeaheadActivationThreshold == 0 || t.typeaheadAlwaysShow) {
+      if (I.value != c.value || !i.value.length && e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow || e.typeaheadShowOnFocus) {
+        !typeaheadUrl.value.length && !e.typeaheadCallback && (i.value = []), d.value = 0;
+        let t = t.value.trim();
+        if (t.length && t.length >= e.typeaheadActivationThreshold || e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow) {
           const a = F(
-            t.caseSensitiveTags ? e : e.toLowerCase()
+            e.caseSensitiveTags ? t : t.toLowerCase()
           );
-          if (t.typeaheadCallback)
-            t.typeaheadCallback(a).then((l) => {
+          if (e.typeaheadCallback)
+            e.typeaheadCallback(a).then((l) => {
               f.value = l;
             });
           else if (typeaheadUrl.value.length > 0) {
@@ -262,17 +262,17 @@ const oe = {
           } else
             q(a);
         }
-        I.value = e.value;
+        I.value = t.value;
       }
-    }, q = (e) => {
+    }, q = (t) => {
       i.value = [];
       for (let a of f.value) {
-        const l = t.caseSensitiveTags ? a[t.textField] : a[t.textField].toLowerCase(), n = i.value.map((h) => h[t.idField]);
-        l.search(e) > -1 && !U(a) && !n.includes(a[t.idField]) && i.value.push(a);
+        const l = e.caseSensitiveTags ? a[e.textField] : a[e.textField].toLowerCase(), n = i.value.map((h) => h[e.idField]);
+        l.search(t) > -1 && !U(a) && !n.includes(a[e.idField]) && i.value.push(a);
       }
-      t.sortSearchResults && i.value.sort((a, l) => a[t.textField] < l[t.textField] ? -1 : a[t.textField] > l[t.textField] ? 1 : 0), t.typeaheadMaxResults > 0 && (i.value = i.value.slice(
+      e.sortSearchResults && i.value.sort((a, l) => a[e.textField] < l[e.textField] ? -1 : a[e.textField] > l[e.textField] ? 1 : 0), e.typeaheadMaxResults > 0 && (i.value = i.value.slice(
         0,
-        t.typeaheadMaxResults
+        e.typeaheadMaxResults
       ));
     }, G = () => {
       c.value.length || b(() => {
@@ -282,63 +282,63 @@ const oe = {
       d.value + 1 <= i.value.length - 1 && d.value++;
     }, P = () => {
       d.value > 0 && d.value--;
-    }, g = (e = !1) => {
-      i.value = [], d.value = 0, t.typeaheadAlwaysShow && b(() => {
+    }, g = (t = !1) => {
+      i.value = [], d.value = 0, e.typeaheadAlwaysShow && b(() => {
         v();
-      }), e && O.value.focus();
+      }), t && O.value.focus();
     }, E = () => {
       u.value.splice(0, u.value.length);
     }, K = () => {
-      if (t.modelValue && t.modelValue.length) {
-        if (!Array.isArray(t.modelValue)) {
+      if (e.modelValue && e.modelValue.length) {
+        if (!Array.isArray(e.modelValue)) {
           console.error("Voerro Tags Input: the v-model value must be an array!");
           return;
         }
-        let e = t.modelValue;
-        if (e.value == e)
+        let t = e.modelValue;
+        if (t.value == t)
           return;
         E();
-        for (let a of e)
+        for (let a of t)
           L(a, !0);
       } else {
         if (u.value.length == 0)
           return;
         E();
       }
-    }, U = (e) => {
-      if (t.allowDuplicates || !e)
+    }, U = (t) => {
+      if (e.allowDuplicates || !t)
         return !1;
       const a = F(
-        t.caseSensitiveTags ? e[t.textField] : e[t.textField].toLowerCase()
+        e.caseSensitiveTags ? t[e.textField] : t[e.textField].toLowerCase()
       );
       for (let l of u.value) {
-        const n = t.caseSensitiveTags ? l[t.textField] : l[t.textField].toLowerCase();
-        if (l[t.idField] === e[t.idField] && F(n).length == a.length && n.search(a) > -1)
+        const n = e.caseSensitiveTags ? l[e.textField] : l[e.textField].toLowerCase();
+        if (l[e.idField] === t[e.idField] && F(n).length == a.length && n.search(a) > -1)
           return !0;
       }
       return !1;
-    }, Y = (e) => {
-      p("keyup", e);
-    }, Z = (e) => {
-      p("keydown", e);
-    }, _ = (e) => {
-      p("focus", e), x.value = !0;
-    }, ee = (e) => {
-      p("click", e), x.value = !0, v();
-    }, te = (e) => {
-      p("blur", e), t.addTagsOnBlur && t.tagFromInput(!0), t.typeaheadAlwaysShow ? v() : G(), x.value = !1;
-    }, ae = (e) => {
-      if (!t.modelValueFields)
-        return JSON.stringify(e);
-      const a = t.modelValueFields.replace(/\s/, "").split(",");
-      return a.length === 1 ? e[a[0]] : JSON.stringify(
+    }, Y = (t) => {
+      p("keyup", t);
+    }, Z = (t) => {
+      p("keydown", t);
+    }, _ = (t) => {
+      p("focus", t), x.value = !0;
+    }, ee = (t) => {
+      p("click", t), x.value = !0, v();
+    }, te = (t) => {
+      p("blur", t), e.addTagsOnBlur && e.tagFromInput(!0), e.typeaheadAlwaysShow ? v() : G(), x.value = !1;
+    }, ae = (t) => {
+      if (!e.modelValueFields)
+        return JSON.stringify(t);
+      const a = e.modelValueFields.replace(/\s/, "").split(",");
+      return a.length === 1 ? t[a[0]] : JSON.stringify(
         Object.assign(
           {},
-          ...a.map((l) => ({ [l]: e[l] }))
+          ...a.map((l) => ({ [l]: t[l] }))
         )
       );
-    }, le = (e) => t.displayField !== void 0 && t.displayField !== null && e[t.displayField] !== void 0 && e[t.displayField] !== null && e[t.displayField] !== "" ? e[t.displayField] : e[t.textField], V = (e) => e.map((a) => Object.assign({}, a));
-    return (e, a) => (o(), r("div", oe, [
+    }, le = (t) => e.displayField !== void 0 && e.displayField !== null && t[e.displayField] !== void 0 && t[e.displayField] !== null && t[e.displayField] !== "" ? t[e.displayField] : t[e.textField], V = (t) => t.map((a) => Object.assign({}, a));
+    return (t, a) => (o(), r("div", oe, [
       w("div", {
         class: m({ [s.wrapperClass + " tags-input"]: !0, active: x.value, disabled: s.disabled })
       }, [
@@ -346,7 +346,7 @@ const oe = {
           key: n,
           class: m(["tags-input-badge tags-input-badge-pill tags-input-badge-selected-default", { disabled: s.disabled }])
         }, [
-          ie(e.$slots, "selected-tag", {
+          ie(t.$slots, "selected-tag", {
             tag: l,
             index: n,
             removeTag: $

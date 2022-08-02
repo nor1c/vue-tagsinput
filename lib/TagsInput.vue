@@ -567,7 +567,7 @@ const searchTag = () => {
     return false;
   }
 
-  if (oldInput.value != input.value || (!searchResults.value.length && props.typeaheadActivationThreshold == 0) || props.typeaheadAlwaysShow || this.typeaheadShowOnFocus) {
+  if (oldInput.value != input.value || (!searchResults.value.length && props.typeaheadActivationThreshold == 0) || props.typeaheadAlwaysShow || props.typeaheadShowOnFocus) {
     if (!typeaheadUrl.value.length && !props.typeaheadCallback) {
       searchResults.value = [];
     }
