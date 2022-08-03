@@ -43,7 +43,6 @@
         @blur="onBlur"
         @value="tags"
       >
-      {{ input }}
 
       <div style="display: none;" v-if="elementId">
         <input v-for="(tag, index) in tags"

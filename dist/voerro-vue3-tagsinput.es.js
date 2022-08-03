@@ -1,11 +1,11 @@
-import { ref as h, onMounted as se, computed as ue, watch as T, nextTick as b, openBlock as r, createElementBlock as p, createElementVNode as x, normalizeClass as m, Fragment as C, renderList as I, renderSlot as ie, withDirectives as $, withModifiers as S, vShow as D, withKeys as w, unref as de, createTextVNode as oe, toDisplayString as H, createCommentVNode as A } from "vue";
-const re = {
+import { ref as h, onMounted as se, computed as ue, watch as T, nextTick as b, openBlock as r, createElementBlock as p, createElementVNode as w, normalizeClass as m, Fragment as C, renderList as I, renderSlot as ie, withDirectives as $, withModifiers as S, vShow as D, withKeys as x, unref as de, createCommentVNode as A, toDisplayString as j } from "vue";
+const oe = {
   class: "tags-input-root",
   style: { position: "relative" }
-}, pe = ["innerHTML"], ce = ["onClick"], he = ["id", "name", "placeholder", "value", "onKeydown", "onKeyup"], ye = {
+}, re = ["innerHTML"], pe = ["onClick"], ce = ["id", "name", "placeholder", "value", "onKeydown", "onKeyup"], he = {
   key: 0,
   style: { display: "none" }
-}, fe = ["name", "value"], ve = ["textContent"], ge = ["innerHTML", "onMouseover", "onMousedown"], me = ["textContent"], Se = ["innerHTML", "onMouseover", "onMousedown"], Fe = {
+}, ye = ["name", "value"], fe = ["textContent"], ve = ["innerHTML", "onMouseover", "onMousedown"], ge = ["textContent"], me = ["innerHTML", "onMouseover", "onMousedown"], Se = {
   __name: "TagsInput",
   props: {
     elementId: String,
@@ -167,7 +167,7 @@ const re = {
     h(1);
     const k = h(!1), M = h(!1), f = h(), O = h(null);
     se(() => {
-      f.value = j(e.existingTags), V(), e.typeaheadAlwaysShow && v(), c("initialized"), addEventListener("click", (t) => {
+      f.value = V(e.existingTags), U(), e.typeaheadAlwaysShow && v(), c("initialized"), addEventListener("click", (t) => {
         t.target !== O.value && g();
       });
     });
@@ -175,18 +175,18 @@ const re = {
     T(i, (t, a) => {
       console.log([t, a]), v(), t.length && t != a && (t.substring(a.length, t.length), e.addTagsOnSpace && t.endsWith(" ") && (i.value = t.trim(), e.tagFromInput(!0)), e.addTagsOnComma && (t = t.trim(), t.endsWith(",") && (i.value = t.substring(0, t.length - 1), e.tagFromInput(!0))), c("change", t));
     }), T(e.existingTags, (t) => {
-      f.value.splice(0), f.value = j(t), v();
+      f.value.splice(0), f.value = V(t), v();
     }), T(u, () => {
       z.value = JSON.stringify(u.value), c("update:modelValue", u.value);
     }), T(e.modelValue, () => {
-      V();
+      U();
     }), T(e.typeaheadAlwaysShow, (t) => {
       t ? v() : g();
     });
     const F = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), W = (t = !1) => {
       if (!M.value)
         if (d.value.length && o.value >= 0 && !t)
-          E(d.value[o.value]), i.value = "";
+          N(d.value[o.value]), i.value = "";
         else {
           let a = i.value.trim();
           if (!e.onlyExistingTags && a.length && e.validate(a)) {
@@ -210,9 +210,9 @@ const re = {
             L(l);
           }
         }
+    }, H = (t) => {
+      N(t), O.value.blur();
     }, N = (t) => {
-      E(t), O.value.blur();
-    }, E = (t) => {
       g(), L(t), b(() => {
         i.value = "", B.value = "";
       });
@@ -255,16 +255,16 @@ const re = {
             console.log("searching tags from API.."), f.value.splice(0);
             const l = new XMLHttpRequest();
             l.onreadystatechange = function() {
-              this.readyState == 4 && this.status == 200 && (console.log("typeaheadURL result:", l.responseText), f.value = JSON.parse(l.responseText), K(a));
+              this.readyState == 4 && this.status == 200 && (console.log("typeaheadURL result:", l.responseText), f.value = JSON.parse(l.responseText), E(a));
             };
             const n = e.typeaheadUrl.replace(":search", a);
             l.open("GET", n, !0), l.send();
           } else
-            K(a);
+            E(a);
         }
         B.value = i.value;
       }
-    }, K = (t) => {
+    }, E = (t) => {
       d.value = [];
       for (let a of f.value) {
         const l = e.caseSensitiveTags ? a[e.textField] : a[e.textField].toLowerCase(), n = d.value.map((y) => y[e.idField]);
@@ -286,9 +286,9 @@ const re = {
       d.value = [], o.value = 0, e.typeaheadAlwaysShow && b(() => {
         v();
       }), t && O.value.focus();
-    }, U = () => {
+    }, K = () => {
       u.value.splice(0, u.value.length);
-    }, V = () => {
+    }, U = () => {
       if (e.modelValue && e.modelValue.length) {
         if (!Array.isArray(e.modelValue)) {
           console.error("Voerro Tags Input: the v-model value must be an array!");
@@ -297,13 +297,13 @@ const re = {
         let t = e.modelValue;
         if (t.value == t)
           return;
-        U();
+        K();
         for (let a of t)
           L(a, !0);
       } else {
         if (u.value.length == 0)
           return;
-        U();
+        K();
       }
     }, J = (t) => {
       if (e.allowDuplicates || !t)
@@ -337,9 +337,9 @@ const re = {
           ...a.map((l) => ({ [l]: t[l] }))
         )
       );
-    }, le = (t) => e.displayField !== void 0 && e.displayField !== null && t[e.displayField] !== void 0 && t[e.displayField] !== null && t[e.displayField] !== "" ? t[e.displayField] : t[e.textField], j = (t) => t.map((a) => Object.assign({}, a));
-    return (t, a) => (r(), p("div", re, [
-      x("div", {
+    }, le = (t) => e.displayField !== void 0 && e.displayField !== null && t[e.displayField] !== void 0 && t[e.displayField] !== null && t[e.displayField] !== "" ? t[e.displayField] : t[e.textField], V = (t) => t.map((a) => Object.assign({}, a));
+    return (t, a) => (r(), p("div", oe, [
+      w("div", {
         class: m({ [s.wrapperClass + " tags-input"]: !0, active: k.value, disabled: s.disabled })
       }, [
         (r(!0), p(C, null, I(u.value, (l, n) => (r(), p("span", {
@@ -351,19 +351,19 @@ const re = {
             index: n,
             removeTag: R
           }, () => [
-            x("span", {
+            w("span", {
               innerHTML: l[s.textField]
-            }, null, 8, pe),
-            $(x("a", {
+            }, null, 8, re),
+            $(w("a", {
               href: "#",
               class: "tags-input-remove",
               onClick: S((y) => R(n), ["prevent"])
-            }, null, 8, ce), [
+            }, null, 8, pe), [
               [D, !s.disabled]
             ])
           ])
         ], 2))), 128)),
-        $(x("input", {
+        $(w("input", {
           type: "text",
           ref: "taginput",
           id: s.inputId,
@@ -374,34 +374,33 @@ const re = {
           onCompositionstart: a[1] || (a[1] = (l) => M.value = !0),
           onCompositionend: a[2] || (a[2] = (l) => M.value = !1),
           onKeydown: [
-            a[3] || (a[3] = w(S((l) => W(!1), ["prevent"]), ["enter"])),
-            w(q, ["8"]),
-            w(P, ["down"]),
-            w(X, ["up"]),
+            a[3] || (a[3] = x(S((l) => W(!1), ["prevent"]), ["enter"])),
+            x(q, ["8"]),
+            x(P, ["down"]),
+            x(X, ["up"]),
             Z
           ],
           onKeyup: [
             Y,
-            w(g, ["esc"])
+            x(g, ["esc"])
           ],
           onFocus: _,
           onClick: ee,
           onBlur: te,
           onValue: a[4] || (a[4] = (...l) => u.value && u.value(...l))
-        }, null, 40, he), [
+        }, null, 40, ce), [
           [D, !de(Q)]
         ]),
-        oe(" " + H(i.value) + " ", 1),
-        s.elementId ? (r(), p("div", ye, [
+        s.elementId ? (r(), p("div", he, [
           (r(!0), p(C, null, I(u.value, (l, n) => (r(), p("input", {
             key: n,
             type: "hidden",
             name: `${s.elementId}[]`,
             value: ae(l)
-          }, null, 8, fe))), 128))
+          }, null, 8, ye))), 128))
         ])) : A("", !0)
       ], 2),
-      $(x("div", null, [
+      $(w("div", null, [
         s.typeaheadStyle === "badges" ? (r(), p("p", {
           key: 0,
           class: m(`typeahead-${s.typeaheadStyle}`)
@@ -410,18 +409,18 @@ const re = {
             key: 0,
             class: "tags-input-badge typeahead-hide-btn tags-input-typeahead-item-default",
             onClick: a[5] || (a[5] = S((l) => g(!0), ["prevent"])),
-            textContent: H(s.discardSearchText)
-          }, null, 8, ve)),
+            textContent: j(s.discardSearchText)
+          }, null, 8, fe)),
           (r(!0), p(C, null, I(d.value, (l, n) => (r(), p("span", {
             key: n,
             innerHTML: l[s.textField],
             onMouseover: (y) => o.value = n,
-            onMousedown: S((y) => N(l), ["prevent"]),
+            onMousedown: S((y) => H(l), ["prevent"]),
             class: m(["tags-input-badge", {
               "tags-input-typeahead-item-default": n != o.value,
               "tags-input-typeahead-item-highlighted-default": n == o.value
             }])
-          }, null, 42, ge))), 128))
+          }, null, 42, ve))), 128))
         ], 2)) : s.typeaheadStyle === "dropdown" ? (r(), p("ul", {
           key: 1,
           class: m(`typeahead-${s.typeaheadStyle}`)
@@ -430,30 +429,30 @@ const re = {
             key: 0,
             class: "tags-input-typeahead-item-default typeahead-hide-btn",
             onClick: a[6] || (a[6] = S((l) => g(!0), ["prevent"])),
-            textContent: H(s.discardSearchText)
-          }, null, 8, me)),
+            textContent: j(s.discardSearchText)
+          }, null, 8, ge)),
           (r(!0), p(C, null, I(d.value, (l, n) => (r(), p("li", {
             key: n,
             innerHTML: le(l),
             onMouseover: (y) => o.value = n,
-            onMousedown: S((y) => N(l), ["prevent"]),
+            onMousedown: S((y) => H(l), ["prevent"]),
             class: m({
               "tags-input-typeahead-item-default": n != o.value,
               "tags-input-typeahead-item-highlighted-default": n == o.value
             })
-          }, null, 42, Se))), 128))
+          }, null, 42, me))), 128))
         ], 2)) : A("", !0)
       ], 512), [
         [D, d.value.length]
       ])
     ]));
   }
-}, be = {
+}, Te = {
   install: (s) => {
-    s.component("TagsInput", Fe);
+    s.component("TagsInput", Se);
   }
 };
 export {
-  Fe as TagsInput,
-  be as default
+  Se as TagsInput,
+  Te as default
 };
