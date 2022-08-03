@@ -331,7 +331,7 @@ const hideInputField = computed (() => (props.hideInputOnLimit && props.limit > 
  * @watchers
  */
 watch (input, (newVal, oldVal) => {
-  console.log([newVal, oldVal])
+  ([newVal, oldVal])
   searchTag(false);
 
   if (newVal.length && newVal != oldVal) {
@@ -575,8 +575,6 @@ const searchTag = () => {
     return false;
   }
 
-  console.log(input.value)
-
   if (oldInput.value != input.value || (!searchResults.value.length && props.typeaheadActivationThreshold == 0) || props.typeaheadAlwaysShow || props.typeaheadShowOnFocus) {
     if (!props.typeaheadUrl.length && !props.typeaheadCallback) {
       searchResults.value = [];
@@ -598,13 +596,11 @@ const searchTag = () => {
             typeaheadTags.value = results;
           });
       } else if (props.typeaheadUrl.length > 0) {
-        console.log('searching tags from API..');
         typeaheadTags.value.splice(0);
         const xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
-            console.log('typeaheadURL result:', xhttp.responseText);
             typeaheadTags.value = JSON.parse(xhttp.responseText);
 
             doSearch(searchQuery);
