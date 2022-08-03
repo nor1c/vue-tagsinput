@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { TagsInput } from '../../dist/voerro-vue3-tagsinput.es'
 
 const tags = ref([])

@@ -22,7 +22,7 @@
       </span>
 
       <input type="text"
-        ref="taginput"
+        ref="tagInputRef"
         :id="inputId"
         :name="inputId"
         :placeholder="placeholder"
@@ -130,8 +130,7 @@ const emit = defineEmits([
   'focus', 
   'click', 
   'blur',
-  'update:modelValue',
-  'onUpdate:modelValue'
+  'update:modelValue'
 ])
 
 /**
@@ -369,7 +368,7 @@ watch (props.existingTags, newVal => {
   searchTag();
 })
 
-watch (tags, () => {
+watch (tags.value, () => {
   // Updating the hidden input
   hiddenInput.value = JSON.stringify(tags.value);
 
