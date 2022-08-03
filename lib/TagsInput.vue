@@ -1,6 +1,7 @@
 <template>
   <div class="tags-input-root" style="position: relative;">
     <div :class="{ [ wrapperClass + ' tags-input' ]: true, 'active': isActive, 'disabled': disabled }">
+      exist: {{ tags }}
       <span v-for="(tag, index) in tags"
         :key="index"
         class="tags-input-badge tags-input-badge-pill tags-input-badge-selected-default"
