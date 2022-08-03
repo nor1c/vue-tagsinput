@@ -295,8 +295,7 @@ onMounted (() => {
    * @onCreated
    * previously in onCreated
    */
-  typeaheadTags.value = cloneArray(props.existingTags);
-  console.log('existing tags:', props.existingTags)
+  typeaheadTags.value = cloneArray(toRaw(props.existingTags));
 
   tagsFromValue();
 
