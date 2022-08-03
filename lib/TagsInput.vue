@@ -21,7 +21,8 @@
         </slot>
       </span>
 
-      <input type="text"
+      <input 
+        type="text"
         ref="tagInputRef"
         :id="inputId"
         :name="inputId"
@@ -520,8 +521,8 @@ const addTag = (tag, force = false) => {
  * @returns void
  */
 const removeLastTag = () => {
-  console.log('backspace pressed');
-  console.log([input.value.length, props.deleteOnBackspace, tags.value.length]);
+  console.clear()
+  console.log('input length:', input.value.length)
   if (!input.value.length && props.deleteOnBackspace && tags.value.length) {
     removeTag(tags.value.length - 1);
   }

@@ -1,41 +1,39 @@
 <template>
-  <div>
-    <div>
-      <TagsInput
-        v-model="tags"
-        :placeholder="'Type a tag'"
-        :typeahead="true"
-        :limit="10"
-        :hide-input-on-limit="true"
-        :typeahead-style="'dropdown'"
-        :typeahead-activation-threshold="1"
-        :typeahead-show-on-focus="true"
-        :typeahead-hide-discard="true"
-        :typeahead-url="'http://192.168.100.5:2021/artworks/tags/search?keyword=:search'"
-        :add-tags-on-comma="true"
-      />
-      {{ tags }}
-    </div>
+  <div class="container mx-auto">
+    <button @click="openShowTagSelector()">SHOW TAGS SELECTOR</button>
 
-    <button @click="clearTags()">CLEAR TAGS</button>
-    <button @click="initPrevious()">PREVIOUS TAGS</button>
+    <div class="input-block">
+      <TagSelector
+        ref="tagSelectRef"
+        v-show="showTagSelector"
+        @apply="applyTags"
+        @closeTagSelector="showTagSelector = false"
+      />
+
+      APPLIED TAGS: {{ previousSelectedTags.length }}
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { TagsInput } from '../../dist/voerro-vue3-tagsinput.es'
+import {
+  ref, toRaw
+} from 'vue'
+import TagSelector from './components/TagSelector.vue'
 
-const tags = ref([])
-const prev = ref([])
+const tagSelectRef = ref(null)
+const showTagSelector = ref(false)
+const previousSelectedTags = ref([])
 
-const clearTags = () => {
-  prev.value = tags.value
-  tags.value = []
+const applyTags = (selectedTags) => {
+  tagSelectRef.value = false
+
+  previousSelectedTags.value = selectedTags
+  showTagSelector.value = false
 }
 
-const initPrevious = () => {
-  tags.value = []
-  tags.value = prev.value
+const openShowTagSelector = () => {
+  tagSelectRef.value.init(toRaw(previousSelectedTags.value))
+  showTagSelector.value = true
 }
 </script>

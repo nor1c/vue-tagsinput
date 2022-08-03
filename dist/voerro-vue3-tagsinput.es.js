@@ -1,4 +1,4 @@
-import { ref as v, onMounted as ue, toRaw as $, computed as ie, watch as T, nextTick as b, openBlock as r, createElementBlock as p, createElementVNode as k, normalizeClass as m, Fragment as I, renderList as B, renderSlot as de, withDirectives as D, withModifiers as S, vShow as H, withKeys as w, unref as oe, createCommentVNode as A, toDisplayString as Q } from "vue";
+import { ref as v, onMounted as ue, toRaw as $, computed as ie, watch as T, nextTick as b, openBlock as r, createElementBlock as p, createElementVNode as w, normalizeClass as m, Fragment as I, renderList as B, renderSlot as de, withDirectives as D, withModifiers as S, vShow as H, withKeys as k, unref as oe, createCommentVNode as A, toDisplayString as Q } from "vue";
 const re = {
   class: "tags-input-root",
   style: { position: "relative" }
@@ -156,7 +156,7 @@ const re = {
     "update:modelValue"
   ],
   setup(s, { emit: c }) {
-    const e = s, u = v([]), i = v(""), O = v(""), V = v(""), d = v([]), o = v(0), x = v(!1), M = v(!1), f = v(), C = v(null);
+    const e = s, u = v([]), i = v(""), M = v(""), V = v(""), d = v([]), o = v(0), x = v(!1), O = v(!1), f = v(), C = v(null);
     ue(() => {
       f.value = z($(e.existingTags)), J(), e.typeaheadAlwaysShow && y(), c("initialized"), addEventListener("click", (t) => {
         t.target !== C.value && g();
@@ -175,7 +175,7 @@ const re = {
       t ? y() : g();
     });
     const F = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), q = (t = !1) => {
-      if (!M.value)
+      if (!O.value)
         if (d.value.length && o.value >= 0 && !t)
           E(d.value[o.value]), i.value = "";
         else {
@@ -205,7 +205,7 @@ const re = {
       E(t), C.value.blur();
     }, E = (t) => {
       g(), L(t), b(() => {
-        i.value = "", O.value = "";
+        i.value = "", M.value = "";
       });
     }, L = (t, a = !1) => {
       if (!(e.disabled && !a)) {
@@ -218,7 +218,7 @@ const re = {
         }));
       }
     }, G = () => {
-      console.log("backspace pressed"), console.log([i.value.length, e.deleteOnBackspace, u.value.length]), !i.value.length && e.deleteOnBackspace && u.value.length && R(u.value.length - 1);
+      console.clear(), console.log("input length:", i.value.length), !i.value.length && e.deleteOnBackspace && u.value.length && R(u.value.length - 1);
     }, R = (t) => {
       if (e.disabled)
         return;
@@ -231,7 +231,7 @@ const re = {
     }, y = () => {
       if (e.typeahead !== !0)
         return !1;
-      if (O.value != i.value || !d.value.length && e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow || e.typeaheadShowOnFocus) {
+      if (M.value != i.value || !d.value.length && e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow || e.typeaheadShowOnFocus) {
         !e.typeaheadUrl.length && !e.typeaheadCallback && (d.value = []), o.value = 0;
         let t = i.value.trim();
         if (t.length && t.length >= e.typeaheadActivationThreshold || e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow) {
@@ -253,7 +253,7 @@ const re = {
           } else
             K(a);
         }
-        O.value = i.value;
+        M.value = i.value;
       }
     }, K = (t) => {
       d.value = [];
@@ -330,7 +330,7 @@ const re = {
       );
     }, ne = (t) => e.displayField !== void 0 && e.displayField !== null && t[e.displayField] !== void 0 && t[e.displayField] !== null && t[e.displayField] !== "" ? t[e.displayField] : t[e.textField], z = (t) => t.map((a) => Object.assign({}, a));
     return (t, a) => (r(), p("div", re, [
-      k("div", {
+      w("div", {
         class: m({ [s.wrapperClass + " tags-input"]: !0, active: x.value, disabled: s.disabled })
       }, [
         (r(!0), p(I, null, B(u.value, (l, n) => (r(), p("span", {
@@ -342,10 +342,10 @@ const re = {
             index: n,
             removeTag: R
           }, () => [
-            k("span", {
+            w("span", {
               innerHTML: l[s.textField]
             }, null, 8, pe),
-            D(k("a", {
+            D(w("a", {
               href: "#",
               class: "tags-input-remove",
               onClick: S((h) => R(n), ["prevent"])
@@ -354,7 +354,7 @@ const re = {
             ])
           ])
         ], 2))), 128)),
-        D(k("input", {
+        D(w("input", {
           type: "text",
           ref_key: "tagInputRef",
           ref: C,
@@ -363,18 +363,18 @@ const re = {
           placeholder: s.placeholder,
           value: i.value,
           onInput: a[0] || (a[0] = (l) => i.value = l.target.value),
-          onCompositionstart: a[1] || (a[1] = (l) => M.value = !0),
-          onCompositionend: a[2] || (a[2] = (l) => M.value = !1),
+          onCompositionstart: a[1] || (a[1] = (l) => O.value = !0),
+          onCompositionend: a[2] || (a[2] = (l) => O.value = !1),
           onKeydown: [
-            a[3] || (a[3] = w(S((l) => q(!1), ["prevent"]), ["enter"])),
-            w(P, ["down"]),
-            w(Y, ["up"]),
+            a[3] || (a[3] = k(S((l) => q(!1), ["prevent"]), ["enter"])),
+            k(P, ["down"]),
+            k(Y, ["up"]),
             _
           ],
           onKeyup: [
-            w(G, ["delete"]),
+            k(G, ["delete"]),
             Z,
-            w(g, ["esc"])
+            k(g, ["esc"])
           ],
           onFocus: ee,
           onClick: te,
@@ -392,7 +392,7 @@ const re = {
           }, null, 8, fe))), 128))
         ])) : A("", !0)
       ], 2),
-      D(k("div", null, [
+      D(w("div", null, [
         s.typeaheadStyle === "badges" ? (r(), p("p", {
           key: 0,
           class: m(`typeahead-${s.typeaheadStyle}`)
