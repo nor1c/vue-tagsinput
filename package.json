@@ -13,9 +13,7 @@
       "import": "./dist/voerro-vue3-tagsinput.es.js",
       "require": "./dist/voerro-vue3-tagsinput.umd.js"
     },
-    "./dist/style.css": "./dist/style.css",
-    "./dist/css/bulma.min.css": "./dist/css/bulma.min.css",
-    "./dist/css/style.css": "./dist/css/style.css"
+    "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
     "dev": "vite",

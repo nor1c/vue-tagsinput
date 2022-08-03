@@ -26,7 +26,7 @@ const showTagSelector = ref(false)
 const previousSelectedTags = ref([])
 
 const applyTags = (selectedTags) => {
-  tagSelectRef.value = false
+  // tagSelectRef.value = false
 
   previousSelectedTags.value = selectedTags
   showTagSelector.value = false
