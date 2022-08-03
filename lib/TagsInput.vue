@@ -597,13 +597,12 @@ const searchTag = () => {
       } else if (props.typeaheadUrl.length > 0) {
         typeaheadTags.value.splice(0);
         const xhttp = new XMLHttpRequest();
-        const that = this;
 
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
-            that.typeaheadTags = JSON.parse(xhttp.responseText);
+            typeaheadTags.value = JSON.parse(xhttp.responseText);
 
-            that.doSearch(searchQuery);
+            doSearch(searchQuery);
           }
         }
 
