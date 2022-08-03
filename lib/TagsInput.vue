@@ -1,7 +1,6 @@
 <template>
   <div class="tags-input-root" style="position: relative;">
     <div :class="{ [ wrapperClass + ' tags-input' ]: true, 'active': isActive, 'disabled': disabled }">
-      exist: {{ tags }}
       <span v-for="(tag, index) in tags"
         :key="index"
         class="tags-input-badge tags-input-badge-pill tags-input-badge-selected-default"
@@ -33,7 +32,7 @@
         @compositionstart="composing=true"
         @compositionend="composing=false"
         @keydown.enter.prevent="tagFromInput(false)"
-        @keydown.8="removeLastTag"
+        @keyup.delete="removeLastTag"
         @keydown.down="nextSearchResult"
         @keydown.up="prevSearchResult"
         @keydown="onKeyDown"
@@ -521,6 +520,8 @@ const addTag = (tag, force = false) => {
  * @returns void
  */
 const removeLastTag = () => {
+  console.log('backspace pressed');
+  console.log([input.value.length, props.deleteOnBackspace, tags.value.length]);
   if (!input.value.length && props.deleteOnBackspace && tags.value.length) {
     removeTag(tags.value.length - 1);
   }
@@ -539,7 +540,7 @@ const removeTag = (index) => {
 
   let tag = tags.value[index];
 
-  if (!beforeRemovingTag(tag)) {
+  if (!props.beforeRemovingTag(tag)) {
     return false;
   }
 
@@ -860,11 +861,11 @@ const onBlur = (e) => {
 
 const hiddenInputValue = (tag) => {
   // Return all fields
-  if (!props.modelValueFields) {
+  if (!props.valueFields) {
     return JSON.stringify(tag);
   }
 
-  const fields = props.modelValueFields.replace(/\s/, '').split(',');
+  const fields = props.valueFields.replace(/\s/, '').split(',');
 
   // A single field
   if (fields.length === 1) {
