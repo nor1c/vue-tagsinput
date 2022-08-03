@@ -110,8 +110,9 @@ import {
   onMounted, 
   watch,
   computed,
-  nextTick
-} from 'vue';
+  nextTick,
+  toRaw
+} from 'vue'
 
 /**
  * @emit
@@ -140,12 +141,6 @@ const props = defineProps({
   elementId: String,
   inputId: String,
   existingTags: {
-    type: Array,
-    default: () => {
-      return [];
-    }
-  },
-  modelValue: {
     type: Array,
     default: () => []
   },
@@ -271,11 +266,10 @@ const props = defineProps({
   },
   modelValue: {
     type: Array,
-    default: []
+    default: () => []
   }
 })
 
-const badgeId = ref(0)
 const tags = ref([])
 
 const input = ref('')
@@ -284,8 +278,6 @@ const hiddenInput = ref('')
 
 const searchResults = ref([])
 const searchSelection = ref(0)
-
-const selectedTag = ref(1)
 
 const isActive = ref(false)
 const composing = ref(false)
@@ -304,6 +296,7 @@ onMounted (() => {
    * previously in onCreated
    */
   typeaheadTags.value = cloneArray(props.existingTags);
+  console.log('existing tags:', props.existingTags)
 
   tagsFromValue();
 
@@ -330,7 +323,6 @@ const hideInputField = computed (() => (props.hideInputOnLimit && props.limit > 
  * @watchers
  */
 watch (input, (newVal, oldVal) => {
-  ([newVal, oldVal])
   searchTag(false);
 
   if (newVal.length && newVal != oldVal) {
@@ -358,7 +350,7 @@ watch (input, (newVal, oldVal) => {
       }
     }
 
-    emit('change', newVal);
+    emit('change', newVal)
   }
 })
 
@@ -370,10 +362,10 @@ watch (props.existingTags, newVal => {
 
 watch (tags.value, () => {
   // Updating the hidden input
-  hiddenInput.value = JSON.stringify(tags.value);
+  hiddenInput.value = JSON.stringify(toRaw(tags.value));
 
   // Update the bound v-model value
-  emit('update:modelValue', tags.value)
+  emit('update:modelValue', toRaw(tags.value))
 })
 
 watch (props.modelValue, () => {
@@ -519,7 +511,7 @@ const addTag = (tag, force = false) => {
     nextTick(() => {
       emit('tag-added', tag);
       emit('tags-updated');
-    });
+    })
   }
 }
 
