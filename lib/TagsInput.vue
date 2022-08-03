@@ -300,6 +300,10 @@ const typeaheadTags = ref()
 const tagInputRef = ref(null)
 
 onMounted (() => {
+  /**
+   * @onCreated
+   * previously in onCreated
+   */
   typeaheadTags.value = cloneArray(props.existingTags);
 
   tagsFromValue();
@@ -307,6 +311,9 @@ onMounted (() => {
   if (props.typeaheadAlwaysShow) {
     searchTag(false);
   }
+  /**
+   * @onCreated
+   */
 
   // Emit an event
   emit('initialized');
@@ -323,37 +330,37 @@ const hideInputField = computed (() => (props.hideInputOnLimit && props.limit > 
 /**
  * @watchers
  */
-watch (input.value, (newVal, oldVal) => {
-  searchTag(false);
+// watch (input.value, (newVal, oldVal) => {
+//   searchTag(false);
 
-  if (newVal.length && newVal != oldVal) {
-    const diff = newVal.substring(oldVal.length, newVal.length);
+//   if (newVal.length && newVal != oldVal) {
+//     const diff = newVal.substring(oldVal.length, newVal.length);
 
-    if (props.addTagsOnSpace) {
-      if (newVal.endsWith(' ')) {
-        // The space shouldn't actually be inserted
-        input.value = newVal.trim();
+//     if (props.addTagsOnSpace) {
+//       if (newVal.endsWith(' ')) {
+//         // The space shouldn't actually be inserted
+//         input.value = newVal.trim();
 
-        // Add the inputed tag
-        props.tagFromInput(true);
-      }
-    }
+//         // Add the inputed tag
+//         props.tagFromInput(true);
+//       }
+//     }
 
-    if (props.addTagsOnComma) {
-      newVal = newVal.trim();
+//     if (props.addTagsOnComma) {
+//       newVal = newVal.trim();
 
-      if (newVal.endsWith(',')) {
-        // The comma shouldn't actually be inserted
-        input.value = newVal.substring(0, newVal.length - 1);
+//       if (newVal.endsWith(',')) {
+//         // The comma shouldn't actually be inserted
+//         input.value = newVal.substring(0, newVal.length - 1);
 
-        // Add the inputed tag
-        props.tagFromInput(true);
-      }
-    }
+//         // Add the inputed tag
+//         props.tagFromInput(true);
+//       }
+//     }
 
-    emit('change', newVal);
-  }
-})
+//     emit('change', newVal);
+//   }
+// })
 
 watch (props.existingTags, newVal => {
   typeaheadTags.value.splice(0);
@@ -573,12 +580,12 @@ const searchTag = () => {
     }
 
     searchSelection.value = 0;
-    let input = input.value.trim();
+    let trimmedInput = input.value.trim();
 
-    if ((input.length && input.length >= props.typeaheadActivationThreshold) || props.typeaheadActivationThreshold == 0 || props.typeaheadAlwaysShow) {
+    if ((trimmedInput.length && trimmedInput.length >= props.typeaheadActivationThreshold) || props.typeaheadActivationThreshold == 0 || props.typeaheadAlwaysShow) {
       // Find all the existing tags which include the search text
       const searchQuery = escapeRegExp(
-        props.caseSensitiveTags ? input : input.toLowerCase()
+        props.caseSensitiveTags ? trimmedInput : trimmedInput.toLowerCase()
       );
 
       // AJAX search
