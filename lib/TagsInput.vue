@@ -600,7 +600,6 @@ const searchTag = () => {
         const that = this;
 
         xhttp.onreadystatechange = function () {
-          console.log([readyState, status])
           if (this.readyState == 4 && this.status == 200) {
             that.typeaheadTags = JSON.parse(xhttp.responseText);
 

@@ -253,7 +253,7 @@ const oe = {
             v.value.splice(0);
             const l = new XMLHttpRequest(), n = this;
             l.onreadystatechange = function() {
-              console.log([readyState, status]), this.readyState == 4 && this.status == 200 && (n.typeaheadTags = JSON.parse(l.responseText), n.doSearch(a));
+              this.readyState == 4 && this.status == 200 && (n.typeaheadTags = JSON.parse(l.responseText), n.doSearch(a));
             };
             const c = e.typeaheadUrl.replace(":search", a);
             l.open("GET", c, !0), l.send();
