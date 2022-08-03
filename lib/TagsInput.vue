@@ -43,6 +43,7 @@
         @blur="onBlur"
         @value="tags"
       >
+      {{ input }}
 
       <div style="display: none;" v-if="elementId">
         <input v-for="(tag, index) in tags"
@@ -330,37 +331,38 @@ const hideInputField = computed (() => (props.hideInputOnLimit && props.limit > 
 /**
  * @watchers
  */
-// watch (input.value, (newVal, oldVal) => {
-//   searchTag(false);
+watch (input, (newVal, oldVal) => {
+  console.log([newVal, oldVal])
+  searchTag(false);
 
-//   if (newVal.length && newVal != oldVal) {
-//     const diff = newVal.substring(oldVal.length, newVal.length);
+  if (newVal.length && newVal != oldVal) {
+    const diff = newVal.substring(oldVal.length, newVal.length);
 
-//     if (props.addTagsOnSpace) {
-//       if (newVal.endsWith(' ')) {
-//         // The space shouldn't actually be inserted
-//         input.value = newVal.trim();
+    if (props.addTagsOnSpace) {
+      if (newVal.endsWith(' ')) {
+        // The space shouldn't actually be inserted
+        input.value = newVal.trim();
 
-//         // Add the inputed tag
-//         props.tagFromInput(true);
-//       }
-//     }
+        // Add the inputed tag
+        props.tagFromInput(true);
+      }
+    }
 
-//     if (props.addTagsOnComma) {
-//       newVal = newVal.trim();
+    if (props.addTagsOnComma) {
+      newVal = newVal.trim();
 
-//       if (newVal.endsWith(',')) {
-//         // The comma shouldn't actually be inserted
-//         input.value = newVal.substring(0, newVal.length - 1);
+      if (newVal.endsWith(',')) {
+        // The comma shouldn't actually be inserted
+        input.value = newVal.substring(0, newVal.length - 1);
 
-//         // Add the inputed tag
-//         props.tagFromInput(true);
-//       }
-//     }
+        // Add the inputed tag
+        props.tagFromInput(true);
+      }
+    }
 
-//     emit('change', newVal);
-//   }
-// })
+    emit('change', newVal);
+  }
+})
 
 watch (props.existingTags, newVal => {
   typeaheadTags.value.splice(0);
@@ -368,7 +370,7 @@ watch (props.existingTags, newVal => {
   searchTag();
 })
 
-watch (tags.value, () => {
+watch (tags, () => {
   // Updating the hidden input
   hiddenInput.value = JSON.stringify(tags.value);
 
@@ -529,7 +531,7 @@ const addTag = (tag, force = false) => {
  * @returns void
  */
 const removeLastTag = () => {
-  if (!input.value.length && this.deleteOnBackspace && tags.value.length) {
+  if (!input.value.length && props.deleteOnBackspace && tags.value.length) {
     removeTag(tags.value.length - 1);
   }
 }
@@ -574,6 +576,8 @@ const searchTag = () => {
     return false;
   }
 
+  console.log(input.value)
+
   if (oldInput.value != input.value || (!searchResults.value.length && props.typeaheadActivationThreshold == 0) || props.typeaheadAlwaysShow || props.typeaheadShowOnFocus) {
     if (!props.typeaheadUrl.length && !props.typeaheadCallback) {
       searchResults.value = [];
@@ -595,11 +599,13 @@ const searchTag = () => {
             typeaheadTags.value = results;
           });
       } else if (props.typeaheadUrl.length > 0) {
+        console.log('searching tags from API..');
         typeaheadTags.value.splice(0);
         const xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
+            console.log('typeaheadURL result:', xhttp.responseText);
             typeaheadTags.value = JSON.parse(xhttp.responseText);
 
             doSearch(searchQuery);
