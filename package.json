@@ -1,7 +1,30 @@
 {
-  "name": "voerro-vue3-tagsinput",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@nor1c/vue-tagsinput",
+  "repository": "https://github.com/nor1c/vue-tagsinput",
+  "version": "3.0.1",
+  "description": "A simple tags input with typeahead made with Vue 3",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "tagsinput",
+    "input",
+    "tags",
+    "typeahead",
+    "autocomplete"
+  ],
+  "author": "Alexander Zavyalov <alex@voerro.com> (http://voerro.com)",
+  "contributors": [
+    {
+        "name": "James Harrison",
+        "email": "james@fasttortoise.co.uk",
+        "url": "https://james090500.com"
+    },
+    {
+        "name": "A. Fauzi",
+        "email": "ahmad.uji1902@gmail.com",
+        "url": "https://github.com/nor1c"
+    }
+  ],
   "type": "module",
   "files": [
     "dist"
@@ -20,6 +43,12 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "license": "MIT",
+  "browserslist": [
+      "> 1%",
+      "last 2 versions",
+      "not ie <= 8"
+  ],
   "dependencies": {
     "vue": "latest"
   },
