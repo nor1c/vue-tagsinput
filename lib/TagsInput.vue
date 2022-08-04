@@ -521,8 +521,6 @@ const addTag = (tag, force = false) => {
  * @returns void
  */
 const removeLastTag = () => {
-  console.clear()
-  console.log('input length:', input.value.length)
   if (!input.value.length && props.deleteOnBackspace && tags.value.length) {
     removeTag(tags.value.length - 1);
   }
