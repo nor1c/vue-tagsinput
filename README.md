@@ -3,6 +3,8 @@
 
 [Documentation](https://github.com/voerro/vue-tagsinput/blob/master/README.md)
 
+[Example usage](https://github.com/nor1c/vue-tagsinput/blob/main/test/src/App.vue)
+
 #### Usage
 ```ts
 import { TagsInput } from '@nor1c/vue-tagsinput'
