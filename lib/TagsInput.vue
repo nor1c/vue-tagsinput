@@ -33,7 +33,7 @@
         @compositionstart="composing=true"
         @compositionend="composing=false"
         @keydown.enter.prevent="tagFromInput(false)"
-        @keyup.delete="removeLastTag"
+        @keydown.delete="removeLastTag"
         @keydown.down="nextSearchResult"
         @keydown.up="prevSearchResult"
         @keydown="onKeyDown"

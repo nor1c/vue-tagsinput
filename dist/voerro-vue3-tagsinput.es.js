@@ -1,11 +1,11 @@
-import { ref as v, onMounted as ue, toRaw as $, computed as ie, watch as T, nextTick as b, openBlock as r, createElementBlock as p, createElementVNode as w, normalizeClass as m, Fragment as I, renderList as B, renderSlot as de, withDirectives as D, withModifiers as S, vShow as H, withKeys as k, unref as oe, createCommentVNode as A, toDisplayString as Q } from "vue";
+import { ref as f, onMounted as ue, toRaw as $, computed as ie, watch as T, nextTick as b, openBlock as r, createElementBlock as p, createElementVNode as w, normalizeClass as m, Fragment as I, renderList as B, renderSlot as de, withDirectives as D, withModifiers as S, vShow as H, withKeys as k, unref as oe, createCommentVNode as A, toDisplayString as Q } from "vue";
 const re = {
   class: "tags-input-root",
   style: { position: "relative" }
-}, pe = ["innerHTML"], ce = ["onClick"], he = ["id", "name", "placeholder", "value", "onKeyup", "onKeydown"], ve = {
+}, pe = ["innerHTML"], ce = ["onClick"], he = ["id", "name", "placeholder", "value", "onKeydown", "onKeyup"], fe = {
   key: 0,
   style: { display: "none" }
-}, fe = ["name", "value"], ye = ["textContent"], ge = ["innerHTML", "onMouseover", "onMousedown"], me = ["textContent"], Se = ["innerHTML", "onMouseover", "onMousedown"], Fe = {
+}, ve = ["name", "value"], ye = ["textContent"], ge = ["innerHTML", "onMouseover", "onMousedown"], me = ["textContent"], Se = ["innerHTML", "onMouseover", "onMousedown"], Fe = {
   __name: "TagsInput",
   props: {
     elementId: String,
@@ -156,17 +156,17 @@ const re = {
     "update:modelValue"
   ],
   setup(s, { emit: c }) {
-    const e = s, u = v([]), i = v(""), M = v(""), V = v(""), d = v([]), o = v(0), x = v(!1), O = v(!1), f = v(), C = v(null);
+    const e = s, u = f([]), d = f(""), M = f(""), V = f(""), i = f([]), o = f(0), x = f(!1), O = f(!1), v = f(), C = f(null);
     ue(() => {
-      f.value = z($(e.existingTags)), J(), e.typeaheadAlwaysShow && y(), c("initialized"), addEventListener("click", (t) => {
+      v.value = z($(e.existingTags)), J(), e.typeaheadAlwaysShow && y(), c("initialized"), addEventListener("click", (t) => {
         t.target !== C.value && g();
       });
     });
     const W = ie(() => e.hideInputOnLimit && e.limit > 0 && u.value.length >= e.limit || e.disabled);
-    T(i, (t, a) => {
-      y(), t.length && t != a && (t.substring(a.length, t.length), e.addTagsOnSpace && t.endsWith(" ") && (i.value = t.trim(), e.tagFromInput(!0)), e.addTagsOnComma && (t = t.trim(), t.endsWith(",") && (i.value = t.substring(0, t.length - 1), e.tagFromInput(!0))), c("change", t));
+    T(d, (t, a) => {
+      y(), t.length && t != a && (t.substring(a.length, t.length), e.addTagsOnSpace && t.endsWith(" ") && (d.value = t.trim(), e.tagFromInput(!0)), e.addTagsOnComma && (t = t.trim(), t.endsWith(",") && (d.value = t.substring(0, t.length - 1), e.tagFromInput(!0))), c("change", t));
     }), T(e.existingTags, (t) => {
-      f.value.splice(0), f.value = z(t), y();
+      v.value.splice(0), v.value = z(t), y();
     }), T(u.value, () => {
       V.value = JSON.stringify($(u.value)), c("update:modelValue", $(u.value));
     }), T(e.modelValue, () => {
@@ -176,12 +176,12 @@ const re = {
     });
     const F = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), q = (t = !1) => {
       if (!O.value)
-        if (d.value.length && o.value >= 0 && !t)
-          E(d.value[o.value]), i.value = "";
+        if (i.value.length && o.value >= 0 && !t)
+          E(i.value[o.value]), d.value = "";
         else {
-          let a = i.value.trim();
+          let a = d.value.trim();
           if (!e.onlyExistingTags && a.length && e.validate(a)) {
-            i.value = "";
+            d.value = "";
             let l = {
               [e.idField]: "",
               [e.textField]: a
@@ -189,7 +189,7 @@ const re = {
             const n = F(
               e.caseSensitiveTags ? l[e.textField] : l[e.textField].toLowerCase()
             );
-            for (let h of f.value) {
+            for (let h of v.value) {
               const se = F(
                 e.caseSensitiveTags ? h[e.textField] : h[e.textField].toLowerCase()
               );
@@ -205,7 +205,7 @@ const re = {
       E(t), C.value.blur();
     }, E = (t) => {
       g(), L(t), b(() => {
-        i.value = "", M.value = "";
+        d.value = "", M.value = "";
       });
     }, L = (t, a = !1) => {
       if (!(e.disabled && !a)) {
@@ -218,7 +218,7 @@ const re = {
         }));
       }
     }, G = () => {
-      console.clear(), console.log("input length:", i.value.length), !i.value.length && e.deleteOnBackspace && u.value.length && R(u.value.length - 1);
+      !d.value.length && e.deleteOnBackspace && u.value.length && R(u.value.length - 1);
     }, R = (t) => {
       if (e.disabled)
         return;
@@ -231,50 +231,50 @@ const re = {
     }, y = () => {
       if (e.typeahead !== !0)
         return !1;
-      if (M.value != i.value || !d.value.length && e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow || e.typeaheadShowOnFocus) {
-        !e.typeaheadUrl.length && !e.typeaheadCallback && (d.value = []), o.value = 0;
-        let t = i.value.trim();
+      if (M.value != d.value || !i.value.length && e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow || e.typeaheadShowOnFocus) {
+        !e.typeaheadUrl.length && !e.typeaheadCallback && (i.value = []), o.value = 0;
+        let t = d.value.trim();
         if (t.length && t.length >= e.typeaheadActivationThreshold || e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow) {
           const a = F(
             e.caseSensitiveTags ? t : t.toLowerCase()
           );
           if (e.typeaheadCallback)
             e.typeaheadCallback(a).then((l) => {
-              f.value = l;
+              v.value = l;
             });
           else if (e.typeaheadUrl.length > 0) {
-            f.value.splice(0);
+            v.value.splice(0);
             const l = new XMLHttpRequest();
             l.onreadystatechange = function() {
-              this.readyState == 4 && this.status == 200 && (f.value = JSON.parse(l.responseText), K(a));
+              this.readyState == 4 && this.status == 200 && (v.value = JSON.parse(l.responseText), K(a));
             };
             const n = e.typeaheadUrl.replace(":search", a);
             l.open("GET", n, !0), l.send();
           } else
             K(a);
         }
-        M.value = i.value;
+        M.value = d.value;
       }
     }, K = (t) => {
-      d.value = [];
-      for (let a of f.value) {
-        const l = e.caseSensitiveTags ? a[e.textField] : a[e.textField].toLowerCase(), n = d.value.map((h) => h[e.idField]);
-        l.search(t) > -1 && !j(a) && !n.includes(a[e.idField]) && d.value.push(a);
+      i.value = [];
+      for (let a of v.value) {
+        const l = e.caseSensitiveTags ? a[e.textField] : a[e.textField].toLowerCase(), n = i.value.map((h) => h[e.idField]);
+        l.search(t) > -1 && !j(a) && !n.includes(a[e.idField]) && i.value.push(a);
       }
-      e.sortSearchResults && d.value.sort((a, l) => a[e.textField] < l[e.textField] ? -1 : a[e.textField] > l[e.textField] ? 1 : 0), e.typeaheadMaxResults > 0 && (d.value = d.value.slice(
+      e.sortSearchResults && i.value.sort((a, l) => a[e.textField] < l[e.textField] ? -1 : a[e.textField] > l[e.textField] ? 1 : 0), e.typeaheadMaxResults > 0 && (i.value = i.value.slice(
         0,
         e.typeaheadMaxResults
       ));
     }, X = () => {
-      i.value.length || b(() => {
+      d.value.length || b(() => {
         g();
       });
     }, P = () => {
-      o.value + 1 <= d.value.length - 1 && o.value++;
+      o.value + 1 <= i.value.length - 1 && o.value++;
     }, Y = () => {
       o.value > 0 && o.value--;
     }, g = (t = !1) => {
-      d.value = [], o.value = 0, e.typeaheadAlwaysShow && b(() => {
+      i.value = [], o.value = 0, e.typeaheadAlwaysShow && b(() => {
         y();
       }), t && C.value.focus();
     }, U = () => {
@@ -361,18 +361,18 @@ const re = {
           id: s.inputId,
           name: s.inputId,
           placeholder: s.placeholder,
-          value: i.value,
-          onInput: a[0] || (a[0] = (l) => i.value = l.target.value),
+          value: d.value,
+          onInput: a[0] || (a[0] = (l) => d.value = l.target.value),
           onCompositionstart: a[1] || (a[1] = (l) => O.value = !0),
           onCompositionend: a[2] || (a[2] = (l) => O.value = !1),
           onKeydown: [
             a[3] || (a[3] = k(S((l) => q(!1), ["prevent"]), ["enter"])),
+            k(G, ["delete"]),
             k(P, ["down"]),
             k(Y, ["up"]),
             _
           ],
           onKeyup: [
-            k(G, ["delete"]),
             Z,
             k(g, ["esc"])
           ],
@@ -383,13 +383,13 @@ const re = {
         }, null, 40, he), [
           [H, !oe(W)]
         ]),
-        s.elementId ? (r(), p("div", ve, [
+        s.elementId ? (r(), p("div", fe, [
           (r(!0), p(I, null, B(u.value, (l, n) => (r(), p("input", {
             key: n,
             type: "hidden",
             name: `${s.elementId}[]`,
             value: le(l)
-          }, null, 8, fe))), 128))
+          }, null, 8, ve))), 128))
         ])) : A("", !0)
       ], 2),
       D(w("div", null, [
@@ -403,7 +403,7 @@ const re = {
             onClick: a[5] || (a[5] = S((l) => g(!0), ["prevent"])),
             textContent: Q(s.discardSearchText)
           }, null, 8, ye)),
-          (r(!0), p(I, null, B(d.value, (l, n) => (r(), p("span", {
+          (r(!0), p(I, null, B(i.value, (l, n) => (r(), p("span", {
             key: n,
             innerHTML: l[s.textField],
             onMouseover: (h) => o.value = n,
@@ -423,7 +423,7 @@ const re = {
             onClick: a[6] || (a[6] = S((l) => g(!0), ["prevent"])),
             textContent: Q(s.discardSearchText)
           }, null, 8, me)),
-          (r(!0), p(I, null, B(d.value, (l, n) => (r(), p("li", {
+          (r(!0), p(I, null, B(i.value, (l, n) => (r(), p("li", {
             key: n,
             innerHTML: ne(l),
             onMouseover: (h) => o.value = n,
@@ -435,7 +435,7 @@ const re = {
           }, null, 42, Se))), 128))
         ], 2)) : A("", !0)
       ], 512), [
-        [H, d.value.length]
+        [H, i.value.length]
       ])
     ]));
   }
