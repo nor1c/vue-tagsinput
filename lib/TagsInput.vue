@@ -334,7 +334,7 @@ watch (input, (newVal, oldVal) => {
         input.value = newVal.trim();
 
         // Add the inputed tag
-        props.tagFromInput(true);
+        tagFromInput(true);
       }
     }
 
@@ -346,7 +346,7 @@ watch (input, (newVal, oldVal) => {
         input.value = newVal.substring(0, newVal.length - 1);
 
         // Add the inputed tag
-        props.tagFromInput(true);
+        tagFromInput(true);
       }
     }
 
@@ -846,7 +846,7 @@ const onBlur = (e) => {
 
   if (props.addTagsOnBlur) {
     // Add the inputed tag
-    props.tagFromInput(true);
+    tagFromInput(true);
   }
 
   if (!props.typeaheadAlwaysShow) {
