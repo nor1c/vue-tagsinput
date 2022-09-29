@@ -1,4 +1,4 @@
-import { ref as f, onMounted as ue, toRaw as D, computed as ie, watch as T, nextTick as b, openBlock as r, createElementBlock as p, createElementVNode as w, normalizeClass as m, Fragment as A, renderList as I, renderSlot as de, withDirectives as H, withModifiers as S, vShow as N, withKeys as k, unref as oe, createCommentVNode as M, toDisplayString as V } from "vue";
+import { ref as f, onMounted as ue, toRaw as D, computed as ie, watch as T, nextTick as b, openBlock as r, createElementBlock as p, createElementVNode as w, normalizeClass as m, Fragment as I, renderList as M, renderSlot as de, withDirectives as H, withModifiers as S, vShow as N, withKeys as k, unref as oe, createCommentVNode as O, toDisplayString as V } from "vue";
 const re = {
   class: "tags-input-root",
   style: { position: "relative" }
@@ -156,15 +156,15 @@ const re = {
     "update:modelValue"
   ],
   setup(s, { emit: c }) {
-    const e = s, u = f([]), d = f(""), O = f(""), W = f(""), i = f([]), o = f(0), x = f(!1), L = f(!1), v = f(), C = f(null);
+    const e = s, u = f([]), d = f(""), L = f(""), W = f(""), i = f([]), o = f(0), x = f(!1), C = f(!1), v = f(), B = f(null);
     ue(() => {
       v.value = Q(D(e.existingTags)), j(), e.typeaheadAlwaysShow && y(), c("initialized"), addEventListener("click", (t) => {
-        t.target !== C.value && g();
+        t.target !== B.value && g();
       });
     });
     const q = ie(() => e.hideInputOnLimit && e.limit > 0 && u.value.length >= e.limit || e.disabled);
     T(d, (t, a) => {
-      y(), t.length && t != a && (t.substring(a.length, t.length), e.addTagsOnSpace && t.endsWith(" ") && (d.value = t.trim(), B(!0)), e.addTagsOnComma && (t = t.trim(), t.endsWith(",") && (d.value = t.substring(0, t.length - 1), B(!0))), c("change", t));
+      y(), t.length && t != a && (t.substring(a.length, t.length), e.addTagsOnSpace && t.endsWith(" ") && (d.value = t.trim(), A(!0)), e.addTagsOnComma && (t = t.trim(), t.endsWith(",") && (d.value = t.substring(0, t.length - 1), A(!0))), c("change", t));
     }), T(e.existingTags, (t) => {
       v.value.splice(0), v.value = Q(t), y();
     }), T(u.value, () => {
@@ -174,8 +174,8 @@ const re = {
     }), T(e.typeaheadAlwaysShow, (t) => {
       t ? y() : g();
     });
-    const F = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), B = (t = !1) => {
-      if (!L.value)
+    const F = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), A = (t = !1) => {
+      if (console.log("composing:", C.value), !C.value)
         if (i.value.length && o.value >= 0 && !t)
           K(i.value[o.value]), d.value = "";
         else {
@@ -202,10 +202,10 @@ const re = {
           }
         }
     }, E = (t) => {
-      K(t), C.value.blur();
+      K(t), B.value.blur();
     }, K = (t) => {
       g(), R(t), b(() => {
-        d.value = "", O.value = "";
+        d.value = "", L.value = "";
       });
     }, R = (t, a = !1) => {
       if (!(e.disabled && !a)) {
@@ -231,7 +231,7 @@ const re = {
     }, y = () => {
       if (e.typeahead !== !0)
         return !1;
-      if (O.value != d.value || !i.value.length && e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow || e.typeaheadShowOnFocus) {
+      if (L.value != d.value || !i.value.length && e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow || e.typeaheadShowOnFocus) {
         !e.typeaheadUrl.length && !e.typeaheadCallback && (i.value = []), o.value = 0;
         let t = d.value.trim();
         if (t.length && t.length >= e.typeaheadActivationThreshold || e.typeaheadActivationThreshold == 0 || e.typeaheadAlwaysShow) {
@@ -253,7 +253,7 @@ const re = {
           } else
             U(a);
         }
-        O.value = d.value;
+        L.value = d.value;
       }
     }, U = (t) => {
       i.value = [];
@@ -276,7 +276,7 @@ const re = {
     }, g = (t = !1) => {
       i.value = [], o.value = 0, e.typeaheadAlwaysShow && b(() => {
         y();
-      }), t && C.value.focus();
+      }), t && B.value.focus();
     }, J = () => {
       u.value.splice(0, u.value.length);
     }, j = () => {
@@ -317,7 +317,7 @@ const re = {
     }, te = (t) => {
       c("click", t), x.value = !0, y();
     }, ae = (t) => {
-      c("blur", t), e.addTagsOnBlur && B(!0), e.typeaheadAlwaysShow ? y() : X(), x.value = !1;
+      c("blur", t), e.addTagsOnBlur && A(!0), e.typeaheadAlwaysShow ? y() : X(), x.value = !1;
     }, le = (t) => {
       if (!e.valueFields)
         return JSON.stringify(t);
@@ -333,7 +333,7 @@ const re = {
       w("div", {
         class: m({ [s.wrapperClass + " tags-input"]: !0, active: x.value, disabled: s.disabled })
       }, [
-        (r(!0), p(A, null, I(u.value, (l, n) => (r(), p("span", {
+        (r(!0), p(I, null, M(u.value, (l, n) => (r(), p("span", {
           key: n,
           class: m(["tags-input-badge tags-input-badge-pill tags-input-badge-selected-default", { disabled: s.disabled }])
         }, [
@@ -357,16 +357,16 @@ const re = {
         H(w("input", {
           type: "text",
           ref_key: "tagInputRef",
-          ref: C,
+          ref: B,
           id: s.inputId,
           name: s.inputId,
           placeholder: s.placeholder,
           value: d.value,
           onInput: a[0] || (a[0] = (l) => d.value = l.target.value),
-          onCompositionstart: a[1] || (a[1] = (l) => L.value = !0),
-          onCompositionend: a[2] || (a[2] = (l) => L.value = !1),
+          onCompositionstart: a[1] || (a[1] = (l) => C.value = !1),
+          onCompositionend: a[2] || (a[2] = (l) => C.value = !1),
           onKeydown: [
-            a[3] || (a[3] = k(S((l) => B(!1), ["prevent"]), ["enter"])),
+            a[3] || (a[3] = k(S((l) => A(!1), ["prevent"]), ["enter"])),
             k(G, ["delete"]),
             k(P, ["down"]),
             k(Y, ["up"]),
@@ -384,26 +384,26 @@ const re = {
           [N, !oe(q)]
         ]),
         s.elementId ? (r(), p("div", fe, [
-          (r(!0), p(A, null, I(u.value, (l, n) => (r(), p("input", {
+          (r(!0), p(I, null, M(u.value, (l, n) => (r(), p("input", {
             key: n,
             type: "hidden",
             name: `${s.elementId}[]`,
             value: le(l)
           }, null, 8, ve))), 128))
-        ])) : M("", !0)
+        ])) : O("", !0)
       ], 2),
       H(w("div", null, [
         s.typeaheadStyle === "badges" ? (r(), p("p", {
           key: 0,
           class: m(`typeahead-${s.typeaheadStyle}`)
         }, [
-          s.typeaheadHideDiscard ? M("", !0) : (r(), p("span", {
+          s.typeaheadHideDiscard ? O("", !0) : (r(), p("span", {
             key: 0,
             class: "tags-input-badge typeahead-hide-btn tags-input-typeahead-item-default",
             onClick: a[5] || (a[5] = S((l) => g(!0), ["prevent"])),
             textContent: V(s.discardSearchText)
           }, null, 8, ye)),
-          (r(!0), p(A, null, I(i.value, (l, n) => (r(), p("span", {
+          (r(!0), p(I, null, M(i.value, (l, n) => (r(), p("span", {
             key: n,
             innerHTML: l[s.textField],
             onMouseover: (h) => o.value = n,
@@ -417,13 +417,13 @@ const re = {
           key: 1,
           class: m(`typeahead-${s.typeaheadStyle}`)
         }, [
-          s.typeaheadHideDiscard ? M("", !0) : (r(), p("li", {
+          s.typeaheadHideDiscard ? O("", !0) : (r(), p("li", {
             key: 0,
             class: "tags-input-typeahead-item-default typeahead-hide-btn",
             onClick: a[6] || (a[6] = S((l) => g(!0), ["prevent"])),
             textContent: V(s.discardSearchText)
           }, null, 8, me)),
-          (r(!0), p(A, null, I(i.value, (l, n) => (r(), p("li", {
+          (r(!0), p(I, null, M(i.value, (l, n) => (r(), p("li", {
             key: n,
             innerHTML: ne(l),
             onMouseover: (h) => o.value = n,
@@ -433,7 +433,7 @@ const re = {
               "tags-input-typeahead-item-highlighted-default": n == o.value
             })
           }, null, 42, Se))), 128))
-        ], 2)) : M("", !0)
+        ], 2)) : O("", !0)
       ], 512), [
         [N, i.value.length]
       ])

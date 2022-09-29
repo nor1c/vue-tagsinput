@@ -30,7 +30,7 @@
         :value="input"
         @input="e => input = e.target.value"
         v-show="!hideInputField"
-        @compositionstart="composing=true"
+        @compositionstart="composing=false"
         @compositionend="composing=false"
         @keydown.enter.prevent="tagFromInput(false)"
         @keydown.delete="removeLastTag"
@@ -404,6 +404,7 @@ const escapeRegExp = (string) => {
  * @returns void
  */
 const tagFromInput = (ignoreSearchResults = false) => {
+  console.log('composing:', composing.value)
   if (composing.value) return;
 
   // If we're choosing a tag from the search results
