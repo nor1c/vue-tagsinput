@@ -14,6 +14,7 @@
           :typeahead-hide-discard="true"
           :typeahead-url="'http://192.168.100.5:2021/artworks/tags/search?keyword=:search'"
           :add-tags-on-comma="true"
+          :initial-value="initTags"
         />
         {{ tags }}
       </div>
@@ -26,13 +27,21 @@
 </template>
 
 <script setup>
-import { ref, toRaw } from 'vue'
+import { onMounted, ref, toRaw, toRef } from 'vue'
 import { TagsInput } from '../../../dist/voerro-vue3-tagsinput.es'
 
 const emits = defineEmits([
   'closeTagSelector',
   'apply'
 ])
+
+const initTags = [
+  { key: 1, value: 'test' }
+]
+
+onMounted (() => {
+  init(initTags)
+})
 
 const tags = ref([])
 

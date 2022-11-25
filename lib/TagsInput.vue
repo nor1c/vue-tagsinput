@@ -112,7 +112,8 @@ import {
   watch,
   computed,
   nextTick,
-  toRaw
+  toRaw,
+reactive
 } from 'vue'
 
 /**
@@ -268,6 +269,10 @@ const props = defineProps({
   modelValue: {
     type: Array,
     default: () => []
+  },
+  initialValue: {
+    type: Array,
+    default: () => []
   }
 })
 
@@ -296,6 +301,15 @@ onMounted (() => {
    * @onCreated
    * previously in onCreated
    */
+  // watch for initial value
+  if (props.initialValue.length) {
+    setTimeout(() => {
+      for (let i = 0; i < props.initialValue.length; i++) {
+        tagFromSearch(reactive(props.initialValue[i]))
+      }
+    }, 100)
+  }
+
   typeaheadTags.value = cloneArray(toRaw(props.existingTags));
 
   tagsFromValue();
@@ -404,7 +418,6 @@ const escapeRegExp = (string) => {
  * @returns void
  */
 const tagFromInput = (ignoreSearchResults = false) => {
-  console.log('composing:', composing.value)
   if (composing.value) return;
 
   // If we're choosing a tag from the search results
@@ -479,7 +492,7 @@ const tagFromSearch = (tag) => {
   nextTick(() => {
     input.value = '';
     oldInput.value = '';
-  });
+  })
 }
 
 /**
@@ -506,7 +519,7 @@ const addTag = (tag, force = false) => {
 
   // Attach the tag if it hasn't been attached yet
   if (!tagSelected(tag)) {
-    tags.value.push(tag);
+    tags.value.push(tag)
 
     // Emit events
     nextTick(() => {
@@ -723,7 +736,7 @@ const clearTags = () => {
 const tagsFromValue = () => {
   if (props.modelValue && props.modelValue.length) {
     if (!Array.isArray(props.modelValue)) {
-      console.error('Voerro Tags Input: the v-model value must be an array!');
+      console.error('Tags Input: the v-model value must be an array!');
 
       return;
     }
