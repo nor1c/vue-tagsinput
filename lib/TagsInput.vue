@@ -382,11 +382,11 @@ watch (tags.value, () => {
   emit('update:modelValue', toRaw(tags.value))
 })
 
-watch (props.modelValue, () => {
+watch (() => props.modelValue, () => {
   tagsFromValue();
 })
 
-watch (props.typeaheadAlwaysShow, newVal => {
+watch (() => props.typeaheadAlwaysShow, newVal => {
   if (newVal) {
     searchTag(false);
   } else {
